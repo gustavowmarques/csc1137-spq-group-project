@@ -1,5 +1,7 @@
 # CSC1137
 
+Please fork this repository for your project. Please ensure that the group ID is included in the repository name. 
+
 
 
 ## Getting started
