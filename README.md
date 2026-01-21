@@ -34,10 +34,15 @@ The emphasis of this project is **process quality as well as product quality**.
 
 ## Project Domain
 
-> **Note:**  
-> The final project topic (e.g. MediTrack, CanvasLite, SafeFlight) will be confirmed
-> during Phase 1 (Inception & Planning).  
-> This repository is intentionally topic-neutral during Sprint 0.
+**Selected Project:** Option B – *MediTrack* (Patient Management System)
+
+The project is based on the **MediTrack Patient Management System**, a healthcare-oriented
+application designed to support the management of patient records, visits, prescriptions,
+and allergies.
+
+This project was selected following a team vote and was chosen due to its strong alignment
+with the module’s focus on **software quality assurance**, particularly in areas such as
+decision-table testing, data integrity, and role-based access control.
 
 ---
 
