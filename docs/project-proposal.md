@@ -45,7 +45,7 @@ The system is intended for the following user roles:
   Responsible for viewing patient information and supporting clinical workflows within
   defined access permissions.
 
-- **System Administrators (if applicable):**  
+- **System Administrators:**  
   Responsible for managing user accounts and access roles.
 
 These distinct roles provide a clear basis for access control and security testing in

@@ -26,9 +26,12 @@ The emphasis of this project is **process quality as well as product quality**.
 - **Team Size:** 6  
 - **Module:** CSC1137 – Software Process Quality  
 - **Institution:** Dublin City University (DCU)
-- **Semester:** Semester 2, 2026
+- **Semester:** Spring 2026
 
-> Team roles (Scrum Lead, QA Lead, DevOps, etc.) will be defined during Phase 1.
+> Team roles (e.g. Scrum Lead, QA Lead, DevOps) will be agreed collaboratively by the
+group following Phase 1, once all members have reviewed the project scope and
+planning artefacts.
+
 
 ---
 
