@@ -6,41 +6,31 @@
 ## 1. Project Identification
 
 **Project Title:**  
-> *To be finalised (working title)*
+MediTrack – Patient Management System
 
 **Module:** CSC1137 – Software Process Quality  
-**Team Name:** [Team Name]  
 **Team Size:** 6  
-**Semester:** [Semester / Year]
-
+**Semester:** Spring 2026
 ---
 
 ## 2. Project Overview
 
-This project involves the design and development of a software application using
-industry-aligned **Software Quality Assurance (SQA)** practices.
+This project involves the development of **MediTrack**, a patient management system designed to support healthcare professionals in managing patient information in a structured and reliable manner.
 
-The primary objective is not only to deliver functional software, but to demonstrate
-a **high-quality software development process**, including Agile planning, early test
-design, continuous integration, and structured verification activities.
+The primary objective of this project is not only to deliver a functional software application, but to demonstrate the application of software process quality principles, including Agile planning, early test design, continuous integration, and structured quality assurance practices.
 
-The system will be developed incrementally across four phases, with a strong emphasis
-on **process quality**, traceability, and testability.
+The system will be developed incrementally across four defined project phases, with a strong emphasis on process quality, traceability, and verification rather than feature volume.
 
 ---
 
 ## 3. Project Domain and Problem Statement
 
-**Domain:**  
-> *To be confirmed (e.g. Healthcare, Education, Travel)*
+**Domain:** Healthcare
 
-**Problem Statement:**  
-Briefly describe the real-world problem the system aims to address.  
-This should focus on:
-- Lack of reliability, safety, or efficiency in the current process
-- Risks that can be mitigated through better software quality and testing
+Healthcare systems rely heavily on accurate, consistent, and secure handling of patient data. Errors in patient records, prescriptions, or allergy information can lead to serious consequences and therefore demand robust validation, decision logic, and access control.
 
-*(High-level only — no technical design at this stage.)*
+The MediTrack system aims to address these challenges by providing a controlled
+environment for managing patient records, visits, prescriptions, and llergies, while placing strong emphasis on correctness, data integrity, and role-based access control.
 
 ---
 
@@ -48,95 +38,97 @@ This should focus on:
 
 The system is intended for the following user roles:
 
-- **Primary Users:**  
-  - [Role 1]  
-  - [Role 2]
+- **Doctors:**  
+  Responsible for recording patient visits, prescriptions, and reviewing medical history.
 
-- **Secondary Users / Stakeholders:**  
-  - [Role 3, if applicable]
+- **Nurses:**  
+  Responsible for viewing patient information and supporting clinical workflows within
+  defined access permissions.
 
-Each role will have different permissions and responsibilities, which will be used
-later to support security and access-control testing.
+- **System Administrators (if applicable):**  
+  Responsible for managing user accounts and access roles.
+
+These distinct roles provide a clear basis for access control and security testing in
+later project phases.
 
 ---
 
 ## 5. High-Level Functional Scope
 
-The initial functional scope of the system includes:
+At a high level, the MediTrack system will support the following functionality:
 
-- Core feature 1  
-- Core feature 2  
-- Core feature 3  
-- Core feature 4  
+- Creation and management of patient records  
+- Recording of patient visits and prescriptions  
+- Management of patient allergy information  
+- Validation of prescription rules and potential conflicts  
+- Enforcement of role-based access control  
 
-These features are intentionally defined at a **high level** and will be refined into
-User Stories during backlog creation.
+These features are intentionally defined at a high level and will be refined into detailed User Stories during backlog creation.
 
 ---
 
 ## 6. Quality and Testing Focus
 
-From the outset, the project adopts a **shift-left testing strategy**, where quality
-assurance activities are planned before full implementation begins.
+From the outset, the project adopts a **shift-left testing approach**, where quality assurance considerations are addressed early in the development lifecycle.
 
-Key quality considerations include:
+Key quality concerns for this system include:
 
-- Input validation and boundary conditions
-- Business decision logic correctness
-- Data integrity and consistency
-- Role-based access control and security
-- Maintainability and testability
+- Correct handling of business decision logic (e.g. prescription constraints)
+- Validation of user input and boundary conditions
+- Protection of patient data through access control
+- Data consistency and integrity
+- Maintainability and testability of the codebase
 
-These considerations will directly inform the test strategy developed in Phase 2.
+These concerns will directly inform the testing strategy and test design activities undertaken in Phase 2.
 
 ---
 
 ## 7. Agile Process and Planning Approach
 
-The project will follow an **Agile development approach**, incorporating:
+The project will follow an **Agile development approach**, using short, iterative cycles to plan, implement, and review work.
 
-- Iterative development using short sprints
-- A prioritised backlog of User Stories
-- Clear **Definition of Ready (DoR)** and **Definition of Done (DoD)**
-- Continuous feedback through reviews and demonstrations
+Key Agile practices include:
 
-Progress will be tracked using GitHub Issues and a GitHub Projects board.
+- A prioritised backlog of User Stories with acceptance criteria  
+- Clearly defined Definition of Ready (DoR) and Definition of Done (DoD)
+- Task tracking using a GitHub Projects board  
+- Regular reviews of progress and process  
+
+This approach supports continuous feedback and incremental improvement throughout the project lifecycle.
 
 ---
 
 ## 8. Initial Infrastructure Setup
 
-To support collaborative development and quality assurance, the following
-infrastructure will be established during Phase 1:
+To support collaborative development and quality assurance, the following infrastructure is established during Phase 1:
 
-- **Version Control:** GitHub repository with protected branches
+- **Version Control:** GitHub repository used as the single source of truth  
 - **Branching Strategy:**  
-  - `main` (stable)  
-  - `develop` (active development)
+  - `main` branch for stable code  
+  - `develop` branch for ongoing development  
 - **Continuous Integration:**  
-  - Automated build and test pipeline using GitHub Actions
-- **Issue Tracking:** GitHub Issues linked to User Stories
+  - Automated CI pipeline using GitHub Actions  
+- **Issue Tracking:**  
+  - GitHub Issues linked to the project board and backlog  
 
-This setup mirrors standard industry “Sprint 0” practices.
+This setup reflects standard industry practices typically established during an initial “Sprint 0”.
 
 ---
 
 ## 9. Expected Outcomes of Phase 1
 
-By the end of Phase 1, the team aims to have:
+By the end of Phase 1, the project will have:
 
-- A clearly defined project scope and direction
-- An initial backlog of User Stories with acceptance criteria
-- Defined Agile process rules (DoR and DoD)
-- A functioning CI pipeline
-- A structured repository ready for Phase 2 design and testing activities
+- A clearly defined project scope and domain  
+- An initial Agile backlog and workflow  
+- Defined process rules (DoR and DoD)  
+- A functioning project board and CI pipeline  
+- Documented evidence of planning and collaboration  
+
+These outcomes establish a solid foundation for the design and testing activities in subsequent phases.
 
 ---
 
 ## 10. Declaration of Authorship and AI Non-Usage
 
-This section will be completed and signed by all team members prior to final submission,
-in accordance with the module’s academic integrity requirements.
-
----
-
+This section will be completed and signed by all team members prior to final submission, in accordance with the module’s academic integrity requirements.
