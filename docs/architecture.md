@@ -1,5 +1,9 @@
-erDiagram
+## Entity Relationship Diagram (ERD)
 
+Note: `doctor_id` refers to a USER with role = "Doctor".
+
+```mermaid
+erDiagram
     USER {
         int user_id PK
         string name
@@ -69,3 +73,4 @@ erDiagram
     PATIENT ||--o{ PRESCRIPTION : receives
     PATIENT ||--o{ ALLERGY : has
     PATIENT ||--o{ APPOINTMENT : schedules
+```
