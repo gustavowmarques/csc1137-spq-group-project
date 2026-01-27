@@ -40,8 +40,7 @@ planning artefacts.
 **Selected Project:** Option B – *MediTrack* (Patient Management System)
 
 The project is based on the **MediTrack Patient Management System**, a healthcare-oriented
-application designed to support the management of patient records, visits, prescriptions,
-and allergies.
+application designed to support the management of patient records, visits, prescriptions, and allergies.
 
 This project was selected following a team vote and was chosen due to its strong alignment
 with the module’s focus on **software quality assurance**, particularly in areas such as

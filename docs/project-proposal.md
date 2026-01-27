@@ -30,7 +30,7 @@ The system will be developed incrementally across four defined project phases, w
 Healthcare systems rely heavily on accurate, consistent, and secure handling of patient data. Errors in patient records, prescriptions, or allergy information can lead to serious consequences and therefore demand robust validation, decision logic, and access control.
 
 The MediTrack system aims to address these challenges by providing a controlled
-environment for managing patient records, visits, prescriptions, and llergies, while placing strong emphasis on correctness, data integrity, and role-based access control.
+environment for managing patient records, visits, prescriptions, and allergies, while placing strong emphasis on correctness, data integrity, and role-based access control.
 
 ---
 
