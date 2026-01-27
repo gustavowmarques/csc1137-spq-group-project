@@ -120,6 +120,11 @@ This pipeline will be expanded in later phases to include:
 
 ---
 
+## Project Status
+Phase 1 (Inception & Planning) – Completed
+
+---
+
 ## Declaration of Authorship and AI Non-Usage
 
 > This section will be completed and finalised before submission, in line with
