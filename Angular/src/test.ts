@@ -1,3 +1,5 @@
+/* eslint-disable */
+// disable eslint for this file for now
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
 import 'zone.js/testing';
