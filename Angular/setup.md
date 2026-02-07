@@ -1,13 +1,11 @@
-# MediTrack - Angular Frontend
+# MediTrack - Angular Frontend Setup
 
 This folder contains the Angular frontend for the **MediTrack Patient Management System**.  
 This guide explains how to get the project running locally after cloning the repository.
 
 ---
 
-## Quick Start
-
-1. Open the repo in code editor and traverse to Angular folder:
+## 1. Open the repo in code editor and traverse to Angular folder:
 
 ```powershell
 cd .\Angular\

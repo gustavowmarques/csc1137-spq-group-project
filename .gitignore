@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 # angular local environment (optional, sensitive)
-/Angular/src/environments/environment.local.ts
+Angular/src/environments/environment.local.ts
