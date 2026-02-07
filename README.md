@@ -28,9 +28,8 @@ The emphasis of this project is **process quality as well as product quality**.
 - **Institution:** Dublin City University (DCU)
 - **Semester:** Spring 2026
 
-> Team roles (e.g. Scrum Lead, QA Lead, DevOps) will be agreed collaboratively by the
-group following Phase 1, once all members have reviewed the project scope and
-planning artefacts.
+> Team roles and responsibilities were agreed during Phase 1 based on individual strengths and project needs. While the team does not formally assign Scrum-specific titles (e.g. Scrum Master or QA Lead), clear ownership has been established for proposal development, backend development, frontend development, CI/CD, and process definition. 
+These roles are documented in the Phase 1 Team Roles and Process document and may evolve as the project progresses.
 
 
 ---
@@ -65,11 +64,14 @@ The project follows an **Agile, incremental development lifecycle**:
 ```
 .
 ├── docs/                   # Project documentation (proposal, QA plan, reports)
-├── src/                    # Application source code
-├── tests/                  # Automated test suites
-├── .github/
-│   └── workflows/          # CI pipelines
-├── README.md               # Project overview (this file)
+├── Angular/                # Angular project (source code and configuration)
+│   ├── src/                # Application source code
+│   ├── dist/               # Build output (ignored in git)
+│   └── angular.json
+├── .gitlab-ci.yml          # GitLab CI/CD pipeline configuration
+├── .gitignore              # Files/folders ignored by Git
+└── README.md               # Project overview (this file)
+
 ```
 *(Structure may evolve as the project progresses.)*
 
@@ -126,13 +128,14 @@ Phase 1 (Inception & Planning) – Completed
 
 ## Declaration of Authorship and AI Non-Usage
 
-> This section will be completed and finalised before submission, in line with
-> module requirements.
-
 By submitting this project, the team declares that:
+
 1. All work submitted is the original work of the team members.
-2. No AI or LLM tools were used to generate project documentation, reports, or source code.
-3. All work complies with the university’s academic integrity policy.
+2. No AI, LLM, or generative tools were used to generate project documentation,
+   reports, source code, or assessment submissions.
+3. All work complies with Dublin City University’s academic integrity policy
+   and the requirements of the CSC1137 module.
+
 
 ---
 
@@ -144,4 +147,3 @@ By submitting this project, the team declares that:
 
 ---
 
-(CI verification run)
