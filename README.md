@@ -65,11 +65,16 @@ The project follows an **Agile, incremental development lifecycle**:
 ```
 .
 ├── docs/                   # Project documentation (proposal, QA plan, reports)
-├── src/                    # Application source code
-├── tests/                  # Automated test suites
-├── .github/
-│   └── workflows/          # CI pipelines
-├── README.md               # Project overview (this file)
+├── Angular/                # Angular project (source code and configuration)
+│   ├── src/                # Application source code
+│   ├── dist/               # Build output (ignored in git)
+│   ├── node_modules/       # Dependencies (ignored in git)
+│   └── angular.json
+├── .gitlab-ci.yml          # GitLab CI/CD pipeline configuration
+├── .vscode/                # VS Code settings
+├── .gitignore              # Files/folders ignored by Git
+└── README.md               # Project overview (this file)
+
 ```
 *(Structure may evolve as the project progresses.)*
 
