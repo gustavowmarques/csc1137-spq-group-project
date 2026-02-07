@@ -28,9 +28,8 @@ The emphasis of this project is **process quality as well as product quality**.
 - **Institution:** Dublin City University (DCU)
 - **Semester:** Spring 2026
 
-> Team roles (e.g. Scrum Lead, QA Lead, DevOps) will be agreed collaboratively by the
-group following Phase 1, once all members have reviewed the project scope and
-planning artefacts.
+> Team roles and responsibilities were agreed during Phase 1 based on individual strengths and project needs. While the team does not formally assign Scrum-specific titles (e.g. Scrum Master or QA Lead), clear ownership has been established for proposal development, backend development, frontend development, CI/CD, and process definition. 
+These roles are documented in the Phase 1 Team Roles and Process document and may evolve as the project progresses.
 
 
 ---
@@ -150,4 +149,3 @@ By submitting this project, the team declares that:
 
 ---
 
-(CI verification run)
