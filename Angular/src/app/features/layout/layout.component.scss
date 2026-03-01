@@ -1,0 +1,87 @@
+.app-shell {
+  display: flex;
+  height: 100vh;
+  background: #121212;
+  color: #e0e0e0;
+}
+
+.sidebar {
+  width: 220px;
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  border-right: 1px solid #333;
+
+  .brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3ddc97;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+  }
+
+  a {
+    display: block;
+    padding: 12px 20px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    &.active {
+      color: #3ddc97;
+      background: #1a2e24;
+      border-left: 3px solid #3ddc97;
+    }
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .user-info {
+    padding: 12px 20px;
+    border-top: 1px solid #333;
+
+    .user-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .user-role {
+      font-size: 0.8rem;
+      color: #3ddc97;
+      margin-top: 2px;
+    }
+  }
+
+  .sign-out-btn {
+    margin: 10px 20px;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #555;
+    color: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    &:hover {
+      background: #333;
+      color: #fff;
+    }
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}

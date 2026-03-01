@@ -1,0 +1,32 @@
+<div class="page">
+  <div class="header">
+    <h2>Visits</h2>
+    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ Add Visit</a>
+  </div>
+
+  <div class="field" *ngIf="!hasPatientContext">
+    <label>Select Patient</label>
+    <select (change)="onPatientChange($any($event.target).value)" [value]="selectedPatientId">
+      <option value="">-- Select a patient --</option>
+      <option *ngFor="let p of patients$ | async" [value]="p.id">{{ p.lastName }}, {{ p.firstName }}</option>
+    </select>
+  </div>
+
+  <table *ngIf="visits$ | async as visits">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visit of visits">
+        <td>{{ visit.createdAt?.toDate() | date:'medium' }}</td>
+        <td>{{ visit.notes }}</td>
+      </tr>
+      <tr *ngIf="visits.length === 0">
+        <td colspan="2" class="empty">No visits found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
