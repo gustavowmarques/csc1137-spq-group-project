@@ -1,0 +1,56 @@
+<div class="login-page">
+
+  <div class="left-panel">
+    <h1>MediTrack</h1>
+    <h2>Patient Management <span>Made Simple</span></h2>
+
+    <p>
+      Streamline your healthcare workflow with secure,
+      intuitive patient record management.
+    </p>
+
+    <div class="features">
+      <div class="feature-card">Patient Management</div>
+      <div class="feature-card">Appointments</div>
+      <div class="feature-card">Prescriptions</div>
+      <div class="feature-card">Medical Records</div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="login-card">
+
+      <h2>Welcome Back</h2>
+      <p>Sign in to access your dashboard</p>
+
+      <!-- <form [formGroup]="loginForm" 
+      (ngSubmit)="onLogin()"> -->
+        <form [formGroup]="loginForm" 
+      >
+        <input
+          type="email"
+          placeholder="Email address"
+          formControlName="email"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+
+        <button type="submit">Sign In →</button>
+      </form>
+
+      <div class="roles">
+        <p>Demo Accounts:</p>
+
+        <button (click)="loginAs('ADMIN')">Admin</button>
+        <button (click)="loginAs('DOCTOR')">Doctor</button>
+        <button (click)="loginAs('NURSE')">Nurse</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
