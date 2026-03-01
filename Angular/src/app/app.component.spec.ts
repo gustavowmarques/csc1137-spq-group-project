@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('mediTrack');
   });
 
-  it('should render title', () => {
+  it('should render router outlet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('mediTrack is running now!');
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
