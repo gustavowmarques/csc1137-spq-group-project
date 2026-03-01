@@ -1,56 +1,47 @@
 <div class="login-page">
+  <div class="login-card">
 
-  <div class="left-panel">
-    <h1>MediTrack</h1>
-    <h2>Patient Management <span>Made Simple</span></h2>
+    <!-- Branding -->
+    <div class="brand-section">
+      <div class="logo-wrap">
+        <div class="logo">MT</div>
+      </div>
+      <h1 class="brand">MediTrack</h1>
+      <p class="subtitle">Patient Management Made Simple</p>
+    </div>
 
-    <p>
-      Streamline your healthcare workflow with secure,
-      intuitive patient record management.
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Lead copy -->
+    <p class="lead">
+      Streamline your healthcare workflow with secure, intuitive patient record management
     </p>
 
-    <div class="features">
-      <div class="feature-card">Patient Management</div>
-      <div class="feature-card">Appointments</div>
-      <div class="feature-card">Prescriptions</div>
-      <div class="feature-card">Medical Records</div>
+    <!-- Google Sign-In -->
+    <button
+      type="button"
+      class="google-btn"
+      [class.is-loading]="isAuthenticating"
+      (click)="signInWithGoogle()"
+      [disabled]="isAuthenticating"
+      aria-label="Sign in with Google"
+    >
+      <span class="g-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path fill="#4285F4" d="M21.6 12.237c0-.638-.057-1.251-.162-1.837H12v3.48h5.844c-.252 1.364-1.064 2.52-2.27 3.298l3.66 2.83c2.137-1.976 3.366-4.865 3.366-8.77z"/>
+          <path fill="#34A853" d="M12 22c2.7 0 4.968-.898 6.624-2.439l-3.66-2.83c-1.02.686-2.33 1.09-2.964 1.09-2.277 0-4.203-1.538-4.89-3.61L3.64 15.1C5.29 18.9 8.4 22 12 22z"/>
+          <path fill="#FBBC05" d="M7.11 13.141A5.997 5.997 0 0 1 6.8 12c0-.414.058-.815.164-1.199L3.64 8.9A9.996 9.996 0 0 0 2 12c0 1.58.356 3.078.985 4.419l4.125-3.278z"/>
+          <path fill="#EA4335" d="M12 6.5c1.472 0 2.797.504 3.843 1.495l2.88-2.88C16.96 2.86 14.69 2 12 2 8.4 2 5.29 5.1 3.64 8.9l4.324 3.01C7.797 8.038 9.723 6.5 12 6.5z"/>
+        </svg>
+      </span>
+      <span class="g-text">{{ isAuthenticating ? 'Signing in\u2026' : 'Sign in with Google' }}</span>
+    </button>
+
+    <!-- Error banner -->
+    <div class="error-banner" *ngIf="authError">
+      <p class="error-text">{{ authError }}</p>
     </div>
+
   </div>
-
-  <div class="right-panel">
-    <div class="login-card">
-
-      <h2>Welcome Back</h2>
-      <p>Sign in to access your dashboard</p>
-
-      <!-- <form [formGroup]="loginForm" 
-      (ngSubmit)="onLogin()"> -->
-        <form [formGroup]="loginForm" 
-      >
-        <input
-          type="email"
-          placeholder="Email address"
-          formControlName="email"
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          formControlName="password"
-        />
-
-        <button type="submit">Sign In →</button>
-      </form>
-
-      <div class="roles">
-        <p>Demo Accounts:</p>
-
-        <button (click)="loginAs('ADMIN')">Admin</button>
-        <button (click)="loginAs('DOCTOR')">Doctor</button>
-        <button (click)="loginAs('NURSE')">Nurse</button>
-      </div>
-
-    </div>
-  </div>
-
 </div>

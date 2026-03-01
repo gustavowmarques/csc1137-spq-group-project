@@ -1,0 +1,27 @@
+<div class="page" *ngIf="patient$ | async as patient">
+  <div class="header">
+    <h2>{{ patient.firstName }} {{ patient.lastName }}</h2>
+    <a *ngIf="canEdit" [routerLink]="['edit']" class="btn-primary">Edit</a>
+  </div>
+
+  <div class="detail-card">
+    <div class="field">
+      <span class="label">First Name</span>
+      <span class="value">{{ patient.firstName }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Last Name</span>
+      <span class="value">{{ patient.lastName }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Date of Birth</span>
+      <span class="value">{{ patient.dateOfBirth }}</span>
+    </div>
+  </div>
+
+  <div class="quick-links">
+    <a [routerLink]="['/visits']" [queryParams]="{ patientId: patientId }">View Visits</a>
+    <a [routerLink]="['/prescriptions']" [queryParams]="{ patientId: patientId }">View Prescriptions</a>
+    <a [routerLink]="['/allergies']" [queryParams]="{ patientId: patientId }">View Allergies</a>
+  </div>
+</div>
