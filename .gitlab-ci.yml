@@ -40,13 +40,13 @@ test:
 build:
   stage: build
   script:
-    - sed -i "s|<apiKey>|$apiKey|g" src/environments/environment.ts
-    - sed -i "s|<authDomain>|$authDomain|g" src/environments/environment.ts
-    - sed -i "s|<projectId>|$projectId|g" src/environments/environment.ts
-    - sed -i "s|<storageBucket>|$storageBucket|g" src/environments/environment.ts
-    - sed -i "s|<messagingSenderId>|$messagingSenderId|g" src/environments/environment.ts
-    - sed -i "s|<appId>|$appId|g" src/environments/environment.ts
-    - sed -i "s|<measurementId>|$measurementId|g" src/environments/environment.ts
+    - sed -i "s|<apiKey>|$apiKey|g" src/environments/environment.prod.ts
+    - sed -i "s|<authDomain>|$authDomain|g" src/environments/environment.prod.ts
+    - sed -i "s|<projectId>|$projectId|g" src/environments/environment.prod.ts
+    - sed -i "s|<storageBucket>|$storageBucket|g" src/environments/environment.prod.ts
+    - sed -i "s|<messagingSenderId>|$messagingSenderId|g" src/environments/environment.prod.ts
+    - sed -i "s|<appId>|$appId|g" src/environments/environment.prod.ts
+    - sed -i "s|<measurementId>|$measurementId|g" src/environments/environment.prod.ts
     - npm run build -- --configuration production
   artifacts:
     paths:
