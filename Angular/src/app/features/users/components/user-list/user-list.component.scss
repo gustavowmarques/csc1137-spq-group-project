@@ -1,0 +1,57 @@
+.page {
+  h2 {
+    color: #3ddc97;
+    margin-bottom: 20px;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+  }
+
+  th {
+    background: #252525;
+    color: #aaa;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+
+  td {
+    color: #e0e0e0;
+  }
+}
+
+.role-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &.role-admin { background: #2e1a47; color: #bb86fc; }
+  &.role-doctor { background: #1a2e47; color: #64b5f6; }
+  &.role-nurse { background: #1a3e2a; color: #3ddc97; }
+}
+
+select {
+  padding: 6px 10px;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

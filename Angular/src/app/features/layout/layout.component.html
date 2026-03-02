@@ -1,0 +1,29 @@
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="brand">MediTrack</div>
+
+    <ng-container *ngIf="isAdmin$ | async; else normalNav">
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+    </ng-container>
+
+    <ng-template #normalNav>
+      <a routerLink="/patients" routerLinkActive="active">Patients</a>
+      <a routerLink="/visits" routerLinkActive="active">Visits</a>
+      <a routerLink="/prescriptions" routerLinkActive="active">Prescriptions</a>
+      <a routerLink="/allergies" routerLinkActive="active">Allergies</a>
+    </ng-template>
+
+    <div class="spacer"></div>
+
+    <div class="user-info" *ngIf="currentUser$ | async as user">
+      <div class="user-name">{{ user.displayName }}</div>
+      <div class="user-role">{{ user.role }}</div>
+    </div>
+
+    <button class="sign-out-btn" (click)="signOut()">Sign Out</button>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

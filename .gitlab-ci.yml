@@ -36,7 +36,7 @@ test:
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
 
-# build stage
+# build stage (production)
 build:
   stage: build
   script:
@@ -53,9 +53,27 @@ build:
       - $project_dir/dist/
     expire_in: 1 hour
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
     - if: '$CI_COMMIT_BRANCH == "main"'
+
+# build stage (staging)
+build_staging:
+  stage: build
+  script:
+    - sed -i "s|<stagingApiKey>|$stagingApiKey|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingAuthDomain>|$stagingAuthDomain|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingProjectId>|$stagingProjectId|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingStorageBucket>|$stagingStorageBucket|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingMessagingSenderId>|$stagingMessagingSenderId|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingAppId>|$stagingAppId|g" src/environments/environment.staging.ts
+    - sed -i "s|<stagingMeasurementId>|$stagingMeasurementId|g" src/environments/environment.staging.ts
+    - npm run build -- --configuration staging
+  artifacts:
+    paths:
+      - $project_dir/dist/
+    expire_in: 1 hour
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
 
 # deploy to staging (when merging to develop)
 deploy_staging:
@@ -65,14 +83,14 @@ deploy_staging:
     - cd $project_dir
     - npm install -g firebase-tools
   script:
-    - firebase deploy --only hosting --token $FIREBASE_TOKEN --project $projectId
+    - firebase deploy --only hosting --token $FIREBASE_TOKEN --project $stagingProjectId
   dependencies:
-    - build
+    - build_staging
   rules:
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
   environment:
     name: staging
-    url: https://$projectId.web.app
+    url: https://$stagingProjectId.web.app
 
 # deploy to production
 deploy_production:

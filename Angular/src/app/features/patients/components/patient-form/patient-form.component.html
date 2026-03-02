@@ -1,0 +1,39 @@
+<div class="page">
+  <h2>{{ isEdit ? 'Edit Patient' : 'New Patient' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
+    <div class="field">
+      <label>First Name *</label>
+      <input type="text" formControlName="firstName" />
+      <span class="error" *ngIf="form.get('firstName')?.touched && form.get('firstName')?.hasError('required')">
+        First name is required.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Last Name *</label>
+      <input type="text" formControlName="lastName" />
+      <span class="error" *ngIf="form.get('lastName')?.touched && form.get('lastName')?.hasError('required')">
+        Last name is required.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Date of Birth *</label>
+      <input type="date" formControlName="dateOfBirth" />
+      <span class="error" *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.hasError('required')">
+        Date of birth is required.
+      </span>
+      <span class="error" *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.hasError('futureDate')">
+        Date of birth cannot be in the future.
+      </span>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="saving">
+        {{ saving ? 'Saving...' : (isEdit ? 'Update' : 'Create') }}
+      </button>
+      <a routerLink="/patients" class="btn-cancel">Cancel</a>
+    </div>
+  </form>
+</div>
