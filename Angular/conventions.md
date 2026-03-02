@@ -26,8 +26,8 @@ git checkout main
 git pull origin main
 git checkout <your-branch>
 
-# run Angular linter
-ng lint
+# run Angular linter from Angular folder
+npm run lint
 Note: Fix all linting errors before committing. Commit only tested, working code.
 ```
 
@@ -55,7 +55,7 @@ refactor: simplify navigation logic
 ## 4. Coding Best Practices
 Readable names: Use meaningful variable, function, and class names. Avoid vague names like x, temp, data; prefer descriptive names.  
 Comments: Add comments where necessary; explain “why” not “what.”  
-Maintenance: Keep code modular, reusable, and maintainable. Run ng lint before committing.
+Maintenance: Keep code modular, reusable, and maintainable. Run npm run lint before committing.
 
 ## 5. General Tips
 Always pull the latest main before starting work.  

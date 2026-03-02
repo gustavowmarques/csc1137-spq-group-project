@@ -13,8 +13,8 @@
         "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
-        "no-unused-vars": "error",
-        "@typescript-eslint/no-unused-vars": ["error"],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
         "semi": ["error", "always"]
       }
     },

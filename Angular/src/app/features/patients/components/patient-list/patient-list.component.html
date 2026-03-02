@@ -1,0 +1,38 @@
+<div class="page">
+  <div class="header">
+    <h2>Patients</h2>
+    <a *ngIf="canEdit" routerLink="new" class="btn-primary">+ New Patient</a>
+  </div>
+
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by name..."
+    (input)="onSearch($any($event.target).value)"
+  />
+
+  <table *ngIf="patients$ | async as patients">
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Date of Birth</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.lastName }}</td>
+        <td>{{ patient.firstName }}</td>
+        <td>{{ patient.dateOfBirth }}</td>
+        <td>
+          <a [routerLink]="[patient.id]" class="btn-link">View</a>
+          <a *ngIf="canEdit" [routerLink]="[patient.id, 'edit']" class="btn-link">Edit</a>
+        </td>
+      </tr>
+      <tr *ngIf="patients.length === 0">
+        <td colspan="4" class="empty">No patients found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

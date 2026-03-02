@@ -1,4 +1,5 @@
 # node
+/node_modules/
 /Angular/node_modules/
 npm-debug.log
 yarn-error.log
