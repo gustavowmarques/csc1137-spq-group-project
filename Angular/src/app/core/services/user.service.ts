@@ -8,14 +8,17 @@ export class UserService {
 
   constructor(private afs: AngularFirestore) {}
 
+  // get all users from firestore
   getAll(): Observable<AppUser[]> {
     return this.afs.collection<AppUser>('users').valueChanges();
   }
 
+  // get a single user
   getById(uid: string): Observable<AppUser | undefined> {
     return this.afs.doc<AppUser>(`users/${uid}`).valueChanges();
   }
 
+  // update a user's role
   async updateRole(uid: string, role: UserRole): Promise<void> {
     await this.afs.doc(`users/${uid}`).update({ role });
   }

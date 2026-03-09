@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/core/services/patient.service';
   templateUrl: './patient-form.component.html',
   styleUrls: ['./patient-form.component.scss']
 })
+// form for creating or editing a patient record
 export class PatientFormComponent implements OnInit {
   form!: FormGroup;
   isEdit = false;
@@ -22,6 +23,7 @@ export class PatientFormComponent implements OnInit {
     private router: Router
   ) {}
 
+  // load patient data on init if in editing mode
   ngOnInit(): void {
     this.form = this.fb.group({
       firstName: ['', Validators.required],
@@ -40,12 +42,14 @@ export class PatientFormComponent implements OnInit {
     }
   }
 
+  // prevent future dates for DOB
   notFutureDate(control: AbstractControl): ValidationErrors | null {
     if (!control.value) return null;
     const today = new Date().toISOString().split('T')[0];
     return control.value > today ? { futureDate: true } : null;
   }
 
+  // create new or update exisiting record
   async save(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -54,6 +58,7 @@ export class PatientFormComponent implements OnInit {
 
     this.saving = true;
     try {
+      // update or create depending on wether we are in edit mode
       if (this.isEdit) {
         await this.patientService.update(this.patientId, this.form.value);
       } else {

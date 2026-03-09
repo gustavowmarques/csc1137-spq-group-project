@@ -5,6 +5,7 @@ import { PatientFormComponent } from './components/patient-form/patient-form.com
 import { PatientDetailComponent } from './components/patient-detail/patient-detail.component';
 import { RoleGuard } from 'src/app/core/guards/role.guard';
 
+// routes for the patients feature, only accessible by doctors
 const routes: Routes = [
   { path: '', component: PatientListComponent },
   {

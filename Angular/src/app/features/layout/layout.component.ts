@@ -11,6 +11,7 @@ import { AppUser } from '../../core/models/user.model';
 })
 export class LayoutComponent implements OnInit {
   currentUser$!: Observable<AppUser | null>;
+  // used to show different nav links for admin vs normal users
   isAdmin$!: Observable<boolean>;
 
   constructor(private authService: AuthService) {}
@@ -22,6 +23,7 @@ export class LayoutComponent implements OnInit {
     );
   }
 
+  // logout the user and clear session
   signOut(): void {
     this.authService.signOut();
   }

@@ -15,6 +15,7 @@ export class RoleGuard implements CanActivate {
     private router: Router
   ) {}
 
+  // check if user has a valid role for this route
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const allowedRoles = route.data['roles'] as UserRole[];
 
@@ -27,6 +28,7 @@ export class RoleGuard implements CanActivate {
         }
         return this.afs.doc<AppUser>(`users/${firebaseUser.uid}`).valueChanges().pipe(
           take(1),
+          // allow if user has a valid role, else redirect to patients page
           map(user => {
             if (user && allowedRoles.includes(user.role)) {
               return true;
