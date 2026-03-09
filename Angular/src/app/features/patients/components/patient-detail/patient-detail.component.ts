@@ -10,9 +10,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './patient-detail.component.html',
   styleUrls: ['./patient-detail.component.scss']
 })
+// display patient details
 export class PatientDetailComponent implements OnInit {
   patient$!: Observable<Patient | undefined>;
   patientId = '';
+  // only doctors can edit patient details
   canEdit = false;
 
   constructor(
@@ -21,6 +23,7 @@ export class PatientDetailComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  // grab patient id from url and fetch thier data
   ngOnInit(): void {
     this.patientId = this.route.snapshot.paramMap.get('id') ?? '';
     this.patient$ = this.patientService.getById(this.patientId);
