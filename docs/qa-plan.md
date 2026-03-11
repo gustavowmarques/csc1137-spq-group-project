@@ -8,7 +8,7 @@ We want to prioritise testing rather than keeping it as an afterthought. This wi
 
 ## 2. Scope
 
-This plan describes the testing process, tools and methods used to test the application. It ensures that the MediTrack app is quality assured. 
+This plan describes the testing process, tools and methods used to test the application. It ensures that the MediTrack app is quality assured. We prioritised testing on high-risk features such as prescription safety, authentication, and role-based access control because these areas directly impact patient safety and data security.
 
 ### Within the Test Scope
 
@@ -42,7 +42,7 @@ Karma will run the unit and integration tests automatically whenever changes are
 
 ### Static Analysis: ESLint
 
-We have already configured the linter via `ng lint`. This runs automatically in CI on every merge to the develop and main branches to catch linting errors.
+We have already configured the linter via `ng lint`. This runs automatically in CI on every merge to the develop and main branches to catch linting errors. We use two environments for testing and deployment: Production is for real users with live data, while Staging is for testing with mock data. This allows us to test comprehensivley without impacting real patient records.
 
 ### CI Pipeline: GitLab CI
 
@@ -84,7 +84,6 @@ We will be checking these workflows:
 - Making sure user roles (Doctor, Nurse, Admin) restrict access to certain features.
 
 Integration tests use a separate test database, so the main data is not affected.
-
 
 ### 4.3 System Testing
 
