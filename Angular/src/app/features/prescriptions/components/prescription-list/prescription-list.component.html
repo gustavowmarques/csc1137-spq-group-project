@@ -1,0 +1,36 @@
+<div class="page">
+  <div class="header">
+    <h2>Prescriptions</h2>
+    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ New Prescription</a>
+  </div>
+
+  <app-patient-select
+    *ngIf="!hasPatientContext"
+    [patients$]="patients$"
+    [selectedPatientId]="selectedPatientId"
+    (patientChange)="onPatientChange($event)"
+    label="Select Patient">
+  </app-patient-select>
+
+  <table *ngIf="prescriptions$ | async as prescriptions">
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rx of prescriptions">
+        <td>{{ rx.drugName }}</td>
+        <td>{{ rx.startDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ rx.endDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ rx.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+      </tr>
+      <tr *ngIf="prescriptions.length === 0">
+        <td colspan="4" class="empty">No prescriptions found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

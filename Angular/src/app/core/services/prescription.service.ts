@@ -35,18 +35,23 @@ export class PrescriptionService {
     );
   }
 
-  // checks for conflicts with active prescriptions; returns conflicting drug names or an empty array
-  async checkDrugConflicts(patientId: string, drugName: string): Promise<string[]> {
-    const activePrescriptions = await firstValueFrom(this.getActiveByPatientId(patientId));
+  // checks for conflicts with overlapping prescriptions; returns conflicting medicine names or an empty array
+  async checkDrugConflicts(patientId: string, drugName: string, startDate: string, endDate: string): Promise<string[]> {
+    const allPrescriptions = await firstValueFrom(this.getByPatientId(patientId));
 
     const conflicts: string[] = [];
     const drugLower = drugName.toLowerCase();
     const conflictList = DRUG_CONFLICTS[drugLower] ?? [];
 
-    if (activePrescriptions) {
-      for (const prescription of activePrescriptions) {
-        const existingDrug = prescription.drugName.toLowerCase();
-        if (conflictList.includes(existingDrug)) {
+    const newStart = new Date(startDate);
+    const newEnd = new Date(endDate);
+
+    for (const prescription of allPrescriptions) {
+      const existingDrug = prescription.drugName.toLowerCase();
+      if (conflictList.includes(existingDrug)) {
+        const existingStart = new Date(prescription.startDate);
+        const existingEnd = new Date(prescription.endDate);
+        if (existingStart <= newEnd && newStart <= existingEnd) {
           conflicts.push(prescription.drugName);
         }
       }
