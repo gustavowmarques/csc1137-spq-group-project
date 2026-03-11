@@ -1,0 +1,32 @@
+<div class="page">
+  <div class="header">
+    <h2>Visits</h2>
+    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ Add Visit</a>
+  </div>
+
+  <app-patient-select
+    *ngIf="!hasPatientContext"
+    [patients$]="patients$"
+    [selectedPatientId]="selectedPatientId"
+    (patientChange)="onPatientChange($event)"
+    label="Select Patient">
+  </app-patient-select>
+
+  <table *ngIf="visits$ | async as visits">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visit of visits">
+        <td>{{ visit.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+        <td>{{ visit.notes }}</td>
+      </tr>
+      <tr *ngIf="visits.length === 0">
+        <td colspan="2" class="empty">No visits found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
