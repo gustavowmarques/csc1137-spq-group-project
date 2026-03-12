@@ -2,7 +2,9 @@
 
 ## 1. Overview
 
-This document is about the Software Process Quality used for the Meditrack app. This app is used to allow health care professionals to manage patient records, visits, prescriptions, and allergy information. This information needs to be secure to ensure data privacy and compliance. The areas we care most about are prescription safety, patient registration and identification, role-based access control  and authentication.
+This document is about the Software Process Quality used for the Meditrack app. This app is used to allow health care professionals to manage patient records, visits, prescriptions, and allergy information. The information handled by this app is very sensitive and there are laws around it (e.g. HIPAA).
+
+This information needs to be secure to ensure data privacy and compliance. The areas we care most about are prescription safety, patient registration and identification, role-based access control  and authentication.
 
 We want to prioritise testing rather than keeping it as an afterthought. This will save us time later.
 
@@ -53,9 +55,9 @@ Our pipeline runs on every push and blocks merges if anything fails. This ensure
 In the case of MediTrack, the Istanbul tool would be incorporated into the CI/CD pipeline to obtain the code coverage reports after the execution of the tests. 
 
 A high code coverage would imply that: 
-- Business logic, such as Medicine Interaction rules, has been sufficiently tested 
-- All the edge conditions have been covered 
-- The dead code has been identified 
+- Business logic, such as Medicine Interaction rules, has been sufficiently tested.
+- All the edge conditions have been covered.
+- The dead code has been identified.
 
 Although it is not possible to have 100% code coverage, which would imply the absence of errors in the code, a high code coverage would imply a high degree of confidence in the reliability of the code.
 
@@ -87,7 +89,7 @@ Integration tests use a separate test database, so the main data is not affected
 
 ### 4.3 System Testing
 
-For our MediTrack app, system testing will use a black box approach to validate the complete end-to-end workflows from the user’s perspective. We will use Cypress because it provides fast end-to-end tests for Angular.
+For our MediTrack app, system testing will use a black box approach to validate the complete end-to-end workflows from the user’s perspective. We will use Cypress because it provides fast end-to-end tests for Angular. So far this has been done manually and the results have been recorded in test cases document.
 
 Some of the scenarios that we will test with Cypress:
 - Doctor logs in and views patient list or creates a new patient.
@@ -101,15 +103,15 @@ Some of the scenarios that we will test with Cypress:
 
 ### 4.4 Regression Testing
 
-When new features are added or existing bugs are fixed, the CI pipeline re-runs the existing tests to ensure we do not break existing code elsewhere. The CI pipeline will handle the regression test. The test suit will automatically run whenever a new code is pushed to the repository. 
+When new features are added or existing bugs are fixed, the CI pipeline re-runs the existing tests to ensure we do not break existing code elsewhere. The CI pipeline handles the regression test. This runs automatically whenever a new code is pushed to the repository. 
 
 ## 5. Non-Functional Testing
 
-Other than functional testing, the system will undergo non-functional testing as well. Such tests are related to the quality of performance, security and reliability of system.
+Other than functional testing, the system will undergo non-functional testing as well. Such tests are related to the quality of performance and reliability of MediTrack.
 
 ### Performance Testing
 
-We will check that patient data retrieval and list rendering remain responsive under normal use. MediTrack is not expected to handle thousands of concurrent users.
+We will check that patient data retrieval and list rendering remain responsive under normal use. MediTrack is not expected to handle thousands of concurrent users. We have not yet focused on this because other testing needed more attention given the sensitive nature of our app.
 
 ### Security Testing
 
@@ -146,7 +148,7 @@ We looked at each module in the MediTrack app and categorised them by risk.
 - SQA Plan: Gustavo, Amaan, Shaheer.
 - Test Design: Quentin, Alex, Shaheer.
 - Unit test implementation:  Saumitra, Shaheer. 
-- Integration test implementation: Quentin, Alex. 
+- Integration test implementation: Quentin, Alex, Saumitra. 
 - System test execution: Gustavo, Amaan. 
 - CI pipeline maintenance: Shaheer. 
 
@@ -155,3 +157,14 @@ We looked at each module in the MediTrack app and categorised them by risk.
 Software Quality Assurance is critical for MediTrack because the application deals with sensitive medical data. By adopting a Shift-Left approach and designing tests early, we reduce the cost of finding and fixing defects later in the cycle.
 
 The combination of unit testing, integration testing, system testing and regression testing ensures the application is validated at every level. The tools we have chosen are Jasmine, Karma, ESLint, GitLab CI and Istanbul. Through continuous testing and code coverage monitoring, we aim to deliver a system with reliable prescription and medicine interaction logic, consistent patient data, and properly enforced access control.
+
+## 8. References
+
+- [1] TestCollab, “Software Testing Strategies: The Complete Guide for QA Teams,” 2026. [Online]. Available: https://testcollab.com/blog/software-testing-strategies. Accessed: Feb. 22, 2026. 
+- [2] Angular, “Testing with Karma and Jasmine.” [Online]. Available: https://angular.dev/guide/testing/karma. Accessed: Feb. 22, 2026. 
+- [3] IBM, “What is Integration Testing?” [Online]. Available: https://www.ibm.com/think/topics/integration-testing. Accessed: Feb. 22, 2026. 
+- [4] IBM, “What is System Testing?” [Online]. Available: https://www.ibm.com/think/topics/system-testing. Accessed: Mar. 1, 2026. 
+- [5] SmartBear, “What Is Unit Testing? Understanding Unit Testing in Software Testing.” [Online]. Available: https://smartbear.com/learn/automated-testing/what-is-unit-testing/. Accessed: Feb. 22, 2026. 
+- [6] E. Carocci, “Mocking Third-Party Services in Integration Testing,” Medium (Geek Culture). [Online]. Available: https://medium.com/geekculture/mocking-third-party-services-in-integration-testing-7ded9ac1fe83. Accessed: Feb. 22, 2026. 
+- [7] Angular, “Testing services.” [Online]. Available: https://angular.dev/guide/testing/services#angular-testbed. Accessed: Feb. 22, 2026. 
+- [8] Jasmine, “Jasmine Documentation.” [Online]. Available: https://jasmine.github.io/index.html. Accessed: Feb. 22, 2026.
