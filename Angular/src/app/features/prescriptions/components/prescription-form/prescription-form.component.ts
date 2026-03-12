@@ -64,7 +64,12 @@ export class PrescriptionFormComponent implements OnInit {
         return;
       }
 
-      const conflicts = await this.prescriptionService.checkDrugConflicts(this.patientId, drugName);
+      const conflicts = await this.prescriptionService.checkDrugConflicts(
+        this.patientId,
+        drugName,
+        this.form.value.startDate,
+        this.form.value.endDate
+      );
       if (conflicts.length > 0) {
         this.blockMessage = `Cannot prescribe "${drugName}": conflicts with active prescription(s): ${conflicts.join(', ')}.`;
         this.saving = false;

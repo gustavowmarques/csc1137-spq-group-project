@@ -1,3 +1,4 @@
+// availble roles in the portal
 export type UserRole = 'Admin' | 'Doctor' | 'Nurse';
 
 export interface AppUser {

@@ -1,6 +1,4 @@
-# MediTrack - Team Coding & Git Cheatsheet
-
-Quick reference for Angular frontend development and Git workflow.
+# Coding & Git Conventions
 
 ---
 
@@ -8,7 +6,6 @@ Quick reference for Angular frontend development and Git workflow.
 
 - **Features:** `feature/<short-description>`  
 - **Bugfixes:** `bugfix/<short-description>`  
-- Branch names should be **clear and specific**.
 
 **Example:**
 * `feature/added-login-form-validation`
@@ -18,7 +15,7 @@ Quick reference for Angular frontend development and Git workflow.
 
 ## 2. Before Committing
 
-Always ensure your branch is up-to-date and linted:
+Ensure your branch is up-to-date and linted:
 
 ```powershell
 # pull latest changes from main
@@ -28,24 +25,24 @@ git checkout <your-branch>
 
 # run Angular linter from Angular folder
 npm run lint
-Note: Fix all linting errors before committing. Commit only tested, working code.
+Note: Fix all linting errors before committing.
 ```
 
 ## 3. Commit Messages
-Use imperative style and be specific to your changes:
+Specific to your changes:
 
 ```powershell
 Format: <type>: <subject>
 ```
 Types:
 ```powershell
-feat → new feature
-fix → bug fix
-refactor → code restructuring
-docs → documentation
-test → adding/fixing tests
+feat: new feature
+fix: bug fix
+refactor: code restructuring
+docs: documentation
+test: adding/fixing tests
 ```
-Commit message examples:
+examples:
 ```powershell
 feat: add login form validation
 fix: correct user display name formatting
@@ -53,7 +50,7 @@ refactor: simplify navigation logic
 ```
 
 ## 4. Coding Best Practices
-Readable names: Use meaningful variable, function, and class names. Avoid vague names like x, temp, data; prefer descriptive names.  
+Readable names: Variable and function names should be meaningful and clear. Avoid vague names like x, temp, data.  
 Comments: Add comments where necessary; explain “why” not “what.”  
 Maintenance: Keep code modular, reusable, and maintainable. Run npm run lint before committing.
 

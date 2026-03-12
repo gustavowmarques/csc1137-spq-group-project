@@ -5,6 +5,7 @@ import { RoleGuard } from './core/guards/role.guard';
 import { BlockAdminGuard } from './core/guards/block-admin.guard';
 import { LayoutComponent } from './features/layout/layout.component';
 
+// main app routes
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +22,7 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      // patients page is blocked for admin users
       {
         path: 'patients',
         loadChildren: () =>
@@ -45,6 +47,7 @@ const routes: Routes = [
           import('./features/allergies/allergies.module').then(m => m.AllergiesModule)
         , canActivate: [BlockAdminGuard]
       },
+      // this route is for admin only for user management
       {
         path: 'users',
         loadChildren: () =>

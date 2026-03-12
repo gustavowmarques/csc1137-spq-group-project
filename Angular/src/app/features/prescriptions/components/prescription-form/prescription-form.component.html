@@ -7,10 +7,10 @@
 
   <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
     <div class="field">
-      <label>Drug Name *</label>
+      <label>Medicine Name *</label>
       <input type="text" formControlName="drugName" placeholder="e.g. Aspirin" />
       <span class="error" *ngIf="form.get('drugName')?.touched && form.get('drugName')?.hasError('required')">
-        Drug name is required.
+        Medicine name is required.
       </span>
     </div>
 

@@ -12,6 +12,7 @@ export class LoginRedirectGuard implements CanActivate {
     private router: Router
   ) {}
 
+  // if user is already logged in, redirect to patients page
   canActivate(): Observable<boolean> {
     return this.afAuth.authState.pipe(
       take(1),

@@ -9,6 +9,7 @@ import { AppUser, UserRole } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  // holds the current logged in user
   private currentUserSubject = new BehaviorSubject<AppUser | null>(null);
   currentUser$: Observable<AppUser | null> = this.currentUserSubject.asObservable();
 
@@ -17,6 +18,7 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router
   ) {
+    // listen to firebase and fetch user from firestore
     this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
         const userRef = this.afs.doc<AppUser>(`users/${firebaseUser.uid}`);
@@ -26,6 +28,7 @@ export class AuthService {
             const serverUser = snap.exists ? (snap.data() as AppUser) : null;
             this.currentUserSubject.next(serverUser);
           } catch (err) {
+            // fallback to local cache if server fetch fails
             const local = await firstValueFrom(userRef.valueChanges().pipe(take(1)));
             this.currentUserSubject.next(local ?? null);
           }
@@ -36,6 +39,7 @@ export class AuthService {
     });
   }
 
+  // return current user
   get currentUser(): AppUser | null {
     return this.currentUserSubject.value;
   }
@@ -44,6 +48,7 @@ export class AuthService {
     return this.currentUserSubject.value !== null;
   }
 
+  // check if logged in user has a specifc role
   hasRole(role: UserRole): boolean {
     return this.currentUser?.role === role;
   }
@@ -52,6 +57,7 @@ export class AuthService {
     return roles.includes(this.currentUser?.role as UserRole);
   }
 
+  // sign in with google
   async signInWithGoogle(): Promise<void> {
     const credential = await this.afAuth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
@@ -64,6 +70,7 @@ export class AuthService {
 
       const existing = await firstValueFrom(userRef.valueChanges());
 
+      // update exisiting user or create new with nurse role
       if (existing) {
         await userRef.update({
           email: user.email ?? existing.email,
@@ -87,11 +94,13 @@ export class AuthService {
         }, { merge: true });
       }
 
+      // role-based redirection post login
       const role = existing?.role ?? 'Nurse';
       this.router.navigate([role === 'Admin' ? '/users' : '/patients']);
     }
   }
 
+  // sign out and redirct to login page
   async signOut(): Promise<void> {
     await this.afAuth.signOut();
     this.currentUserSubject.next(null);

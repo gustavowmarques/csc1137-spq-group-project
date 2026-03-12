@@ -4,18 +4,18 @@
     <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ New Prescription</a>
   </div>
 
-  <div class="field" *ngIf="!hasPatientContext">
-    <label>Select Patient</label>
-    <select (change)="onPatientChange($any($event.target).value)" [value]="selectedPatientId">
-      <option value="">-- Select a patient --</option>
-      <option *ngFor="let p of patients$ | async" [value]="p.id">{{ p.lastName }}, {{ p.firstName }}</option>
-    </select>
-  </div>
+  <app-patient-select
+    *ngIf="!hasPatientContext"
+    [patients$]="patients$"
+    [selectedPatientId]="selectedPatientId"
+    (patientChange)="onPatientChange($event)"
+    label="Select Patient">
+  </app-patient-select>
 
   <table *ngIf="prescriptions$ | async as prescriptions">
     <thead>
       <tr>
-        <th>Drug Name</th>
+        <th>Medicine Name</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Created</th>
@@ -24,9 +24,9 @@
     <tbody>
       <tr *ngFor="let rx of prescriptions">
         <td>{{ rx.drugName }}</td>
-        <td>{{ rx.startDate }}</td>
-        <td>{{ rx.endDate }}</td>
-        <td>{{ rx.createdAt?.toDate() | date:'mediumDate' }}</td>
+        <td>{{ rx.startDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ rx.endDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ rx.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
       </tr>
       <tr *ngIf="prescriptions.length === 0">
         <td colspan="4" class="empty">No prescriptions found.</td>
