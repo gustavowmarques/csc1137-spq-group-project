@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AllergiesRoutingModule } from './allergies-routing.module';
 import { AllergyListComponent } from './components/allergy-list/allergy-list.component';
 import { AllergyFormComponent } from './components/allergy-form/allergy-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AllergyFormComponent } from './components/allergy-form/allergy-form.com
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AllergiesRoutingModule
+    AllergiesRoutingModule,
+    SharedModule
   ]
 })
 export class AllergiesModule { }

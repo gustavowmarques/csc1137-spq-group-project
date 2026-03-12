@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VisitsRoutingModule } from './visits-routing.module';
 import { VisitListComponent } from './components/visit-list/visit-list.component';
 import { VisitFormComponent } from './components/visit-form/visit-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { VisitFormComponent } from './components/visit-form/visit-form.component
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    VisitsRoutingModule
+    VisitsRoutingModule,
+    SharedModule
   ]
 })
 export class VisitsModule { }

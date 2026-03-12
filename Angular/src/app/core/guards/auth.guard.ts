@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
+  // check if user is logged in
   canActivate(): Observable<boolean> {
     return this.afAuth.authState.pipe(
       take(1),

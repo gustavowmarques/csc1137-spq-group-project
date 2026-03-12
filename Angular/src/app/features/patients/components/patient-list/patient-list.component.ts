@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './patient-list.component.html',
   styleUrls: ['./patient-list.component.scss']
 })
+// search dropdown for patients
 export class PatientListComponent implements OnInit {
   patients$!: Observable<Patient[]>;
   searchTerm$ = new BehaviorSubject<string>('');
@@ -20,6 +21,7 @@ export class PatientListComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  // load patients and check if user can edit
   ngOnInit(): void {
     this.canEdit = this.authService.hasAnyRole('Doctor', 'Admin');
 
@@ -33,6 +35,7 @@ export class PatientListComponent implements OnInit {
     );
   }
 
+  // handle keydown events in search box
   onSearch(term: string): void {
     this.searchTerm$.next(term);
   }

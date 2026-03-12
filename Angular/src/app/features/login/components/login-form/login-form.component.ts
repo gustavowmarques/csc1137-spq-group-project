@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
+// login page component with google sign in
 export class LoginFormComponent {
   isAuthenticating = false;
   authError = '';

@@ -1,72 +1,56 @@
-# MediTrack – User Stories and Planning Game
+﻿# User Stories
 
-This document captures the high-level user stories for the MediTrack Patient Management System.
-These stories represent units of customer-visible functionality and are used for planning and estimation as introduced in Week 1 (Stories and Planning Game).
+## MediTrack – Patient Management System
 
-Detailed acceptance criteria and test cases are defined separately and will be refined in later phases.
-
----
-
-## User Stories Created
-
-### 1. User Authentication and Access Control (3 days)
-The system shall allow authorised users to securely log in and access features based on their assigned role
-(e.g. Admin, Doctor, Nurse, Reception).
+These are the high-level user stories for MediTrack. Each one represents a piece of user-visible functionality and is used for planning and estimation.
 
 ---
 
-### 2. Patient Registration and Profile Management (5 days)
-The system shall allow staff to register new patients and manage patient demographic information
-to ensure accurate and up-to-date records.
+### 1. User Authentication and Access Control
+*Estimate: 3 days*
 
----
+The system shall allow authorised users to log in securely and access only the features relevant to their assigned role (Admin, Doctor, Nurse).
 
-### 3. Patient Search and Record Viewing (4 days)
-The system shall allow staff to search for patients and view their profiles,
-including medical history, appointments, allergies, and prescriptions.
+### 2. Patient Registration and Profile Management
+*Estimate: 5 days*
 
----
+The system shall allow staff to register new patients and manage their demographic information.
 
-### 4. Appointment Scheduling and Status Management (6 days)
-The system shall allow staff to schedule, update, and track patient appointments,
-including appointment status (Scheduled, Completed, Cancelled, No-show).
+### 3. Patient Search and Record Viewing
+*Estimate: 4 days*
 
----
+The system shall allow staff to search for patients and view their full profile, including medical history, allergies, and prescriptions.
 
-### 5. Visit Recording and Clinical Notes (5 days)
-The system shall allow clinicians to record patient visits and clinical notes
-to maintain a clear and auditable medical history.
+### 4. Appointment Scheduling and Status Management
+*Estimate: 6 days*
 
----
+The system shall allow staff to schedule and manage patient appointments and update their status (scheduled, completed, cancelled, no-show).
 
-### 6. Prescription Management (7 days)
-The system shall allow authorised clinicians to issue and manage prescriptions,
-including medication details, dosage, and validity periods.
+### 5. Visit Recording and Clinical Notes
+*Estimate: 5 days*
 
----
+The system shall allow clinicians to record patient visits and write clinical notes to maintain an accurate medical history.
 
-### 7. Administration and User Management (6 days)
-The system shall allow administrators to manage users, roles, and access permissions
-to ensure system security and operational control.
+### 6. Prescription Management
+*Estimate: 7 days*
 
----
+The system shall allow authorised clinicians to issue and manage prescriptions, including medication name, dosage, and validity dates.
 
-## Planning Decisions (Indicative)
+### 7. User Management (Admin)
+*Estimate: 6 days*
 
-The following planning outline is indicative and may evolve as the project progresses:
+The system shall allow administrators to create and manage user accounts and assign roles to control access.
+
+## Rough Plan
 
 - **Weeks 5–6:** Stories 1 and 2
 - **Weeks 7–8:** Stories 3 and 4
 - **Weeks 9–10:** Stories 5 and 6
 - **Weeks 11–12:** Story 7, testing, and polish
 
-**Estimated velocity:** ~15–18 days per 2-week iteration
+Estimated velocity: ~15–18 days per two-week iteration.
 
 ---
 
 ## Notes
-- These stories are intentionally high-level to support planning and estimation.
-- They form the basis for:
-  - Detailed user stories with acceptance criteria
-  - Black Box test design (Equivalence Partitioning, Boundary Value Analysis)
-  - Identification of high-risk modules in Phase 2
+- These stories are intentionally high-level and will be broken down further as work begins.

@@ -4,13 +4,13 @@
     <a *ngIf="canAdd && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ Add Allergy</a>
   </div>
 
-  <div class="field" *ngIf="!hasPatientContext">
-    <label>Select Patient</label>
-    <select (change)="onPatientChange($any($event.target).value)" [value]="selectedPatientId">
-      <option value="">-- Select a patient --</option>
-      <option *ngFor="let p of patients$ | async" [value]="p.id">{{ p.lastName }}, {{ p.firstName }}</option>
-    </select>
-  </div>
+  <app-patient-select
+    *ngIf="!hasPatientContext"
+    [patients$]="patients$"
+    [selectedPatientId]="selectedPatientId"
+    (patientChange)="onPatientChange($event)"
+    label="Select Patient">
+  </app-patient-select>
 
   <table *ngIf="allergies$ | async as allergies">
     <thead>

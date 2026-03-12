@@ -8,6 +8,7 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
+// admin view for managing user accounts and roles
 export class UserListComponent implements OnInit {
   users$!: Observable<AppUser[]>;
   updating: Record<string, boolean> = {};
@@ -18,6 +19,7 @@ export class UserListComponent implements OnInit {
     this.users$ = this.userService.getAll();
   }
 
+  // update user role
   async changeRole(uid: string, role: UserRole): Promise<void> {
     this.updating[uid] = true;
     try {

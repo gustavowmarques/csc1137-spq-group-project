@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
 export class BlockAdminGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 
+  // admin users should be redirected to user management page
   canActivate(): Observable<boolean> {
     return this.auth.currentUser$.pipe(
       filter(user => user !== null),
