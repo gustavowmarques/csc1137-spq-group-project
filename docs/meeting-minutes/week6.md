@@ -2,7 +2,7 @@
 
 **Date & Location:** 18/02/2026 (In-class)
 
-**Attendees:** Gustavo, Alexis, Quentin, Saumitra, Shaheer, Amaan
+**Attendees:** Gustavo, Alexis, Quentin, Saumitra, Shaheer, Amaan  
 **Absent:** None
 
 ---
