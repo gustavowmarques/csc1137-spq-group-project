@@ -2,7 +2,7 @@
 
 **Date & Location:** 28/02/2026 (Google Meet)
 
-**Attendees:** Gustavo, Alexis, Quentin, Saumitra, Shaheer, Amaan
+**Attendees:** Gustavo, Alexis, Quentin, Saumitra, Shaheer, Amaan  
 **Absent:** None
 
 ---

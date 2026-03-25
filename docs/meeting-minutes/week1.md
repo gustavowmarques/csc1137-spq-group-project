@@ -2,7 +2,7 @@
 
 **Date & Location:** 14/01/2026 (In-class)
 
-**Attendees:** Amaan, Gustavo, Alexis
+**Attendees:** Amaan, Gustavo, Alexis  
 **Absent:** Rest of group
 
 ---
