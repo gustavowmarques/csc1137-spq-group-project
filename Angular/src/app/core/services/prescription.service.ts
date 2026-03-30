@@ -27,6 +27,12 @@ export class PrescriptionService {
     );
   }
 
+  getById(id: string): Observable<Prescription | undefined> {
+    return this.afs.doc<Prescription>(`${this.collectionName}/${id}`).valueChanges().pipe(
+      map(data => (data ? { ...data, id } : undefined))
+    );
+  }
+
   // returns active prescriptions where end date >= today
   getActiveByPatientId(patientId: string): Observable<Prescription[]> {
     const today = new Date().toISOString().split('T')[0];
@@ -36,7 +42,13 @@ export class PrescriptionService {
   }
 
   // checks for conflicts with overlapping prescriptions; returns conflicting medicine names or an empty array
-  async checkDrugConflicts(patientId: string, drugName: string, startDate: string, endDate: string): Promise<string[]> {
+  async checkDrugConflicts(
+    patientId: string,
+    drugName: string,
+    startDate: string,
+    endDate: string,
+    excludePrescriptionId?: string
+  ): Promise<string[]> {
     const allPrescriptions = await firstValueFrom(this.getByPatientId(patientId));
 
     const conflicts: string[] = [];
@@ -47,6 +59,9 @@ export class PrescriptionService {
     const newEnd = new Date(endDate);
 
     for (const prescription of allPrescriptions) {
+      if (excludePrescriptionId && prescription.id === excludePrescriptionId) {
+        continue;
+      }
       const existingDrug = prescription.drugName.toLowerCase();
       if (conflictList.includes(existingDrug)) {
         const existingStart = new Date(prescription.startDate);
@@ -83,5 +98,15 @@ export class PrescriptionService {
       createdAt: new Date()
     });
     return docRef.id;
+  }
+
+  async update(id: string, prescription: Omit<Prescription, 'id' | 'createdAt' | 'createdBy'>): Promise<void> {
+    await this.afs.doc(`${this.collectionName}/${id}`).update({
+      ...prescription
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.afs.doc(`${this.collectionName}/${id}`).delete();
   }
 }

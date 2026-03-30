@@ -1,7 +1,7 @@
 <div class="field">
   <label>{{ label }}</label>
   <select (change)="onChange($any($event.target).value)" [value]="selectedPatientId">
-    <option value="">-- Select a patient --</option>
+    <option value="">Select patient</option>
     <option *ngFor="let p of patients$ | async" [value]="p.id">{{ p.firstName }} {{ p.lastName }}</option>
   </select>
 </div>

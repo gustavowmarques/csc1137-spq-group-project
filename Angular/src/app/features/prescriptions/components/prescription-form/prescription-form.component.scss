@@ -19,7 +19,8 @@
 .field {
   @include form.field-base;
 
-  input {
+  input,
+  select {
     @include form.control-base;
   }
 }

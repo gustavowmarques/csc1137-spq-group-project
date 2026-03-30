@@ -18,6 +18,7 @@ export class PrescriptionListComponent implements OnInit {
   selectedPatientId = '';
   isDoctor = false;
   hasPatientContext = false;
+  deleting: Record<string, boolean> = {};
 
   constructor(
     private prescriptionService: PrescriptionService,
@@ -45,6 +46,26 @@ export class PrescriptionListComponent implements OnInit {
   private loadPrescriptions(): void {
     if (this.selectedPatientId) {
       this.prescriptions$ = this.prescriptionService.getByPatientId(this.selectedPatientId);
+    }
+  }
+
+  async deletePrescription(prescription: Prescription): Promise<void> {
+    if (!prescription.id || !this.isDoctor) {
+      return;
+    }
+
+    const confirmed = window.confirm(`Delete prescription for ${prescription.drugName}?`);
+    if (!confirmed) {
+      return;
+    }
+
+    this.deleting[prescription.id] = true;
+    try {
+      await this.prescriptionService.delete(prescription.id);
+    } catch (err) {
+      console.error('Failed to delete prescription', err);
+    } finally {
+      this.deleting[prescription.id] = false;
     }
   }
 }
