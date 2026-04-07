@@ -6,10 +6,40 @@
 @include form.primary-button;
 @include form.cancel-button;
 
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+}
+
 .field {
   @include form.field-base;
+  margin-bottom: 0;
 
   input {
     @include form.control-base;
+  }
+
+  select {
+    @include form.control-base;
+  }
+
+  textarea {
+    @include form.control-base;
+    resize: vertical;
+  }
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.actions {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -6,6 +6,10 @@
 
   <div class="detail-card">
     <div class="field">
+      <span class="label">PPSN</span>
+      <span class="value">{{ patient.ppsn }}</span>
+    </div>
+    <div class="field">
       <span class="label">First Name</span>
       <span class="value">{{ patient.firstName }}</span>
     </div>
@@ -15,7 +19,31 @@
     </div>
     <div class="field">
       <span class="label">Date of Birth</span>
-      <span class="value">{{ patient.dateOfBirth }}</span>
+      <span class="value">{{ patient.dateOfBirth | date:'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Gender</span>
+      <span class="value">{{ patient.gender }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Phone Number</span>
+      <span class="value">{{ patient.phoneNumber }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Blood Group</span>
+      <span class="value">{{ patient.bloodGroup }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Emergency Contact Name</span>
+      <span class="value">{{ patient.emergencyContactName }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Emergency Contact Number</span>
+      <span class="value">{{ patient.emergencyContactNumber }}</span>
+    </div>
+    <div class="field full-width">
+      <span class="label">Address</span>
+      <span class="value">{{ patient.address }}</span>
     </div>
   </div>
 
