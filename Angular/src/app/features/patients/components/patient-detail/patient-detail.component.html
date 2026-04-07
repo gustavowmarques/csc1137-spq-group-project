@@ -19,9 +19,112 @@
     </div>
   </div>
 
-  <div class="quick-links">
-    <a [routerLink]="['/visits']" [queryParams]="{ patientId: patientId }">View Visits</a>
-    <a [routerLink]="['/prescriptions']" [queryParams]="{ patientId: patientId }">View Prescriptions</a>
-    <a [routerLink]="['/allergies']" [queryParams]="{ patientId: patientId }">View Allergies</a>
+  <div class="tabs-shell">
+    <div class="patient-tabs" role="tablist" aria-label="Patient related records">
+      <button type="button" class="tab-button" [class.active]="activeTab === 'visits'" (click)="setTab('visits')" role="tab" [attr.aria-selected]="activeTab === 'visits'">Visits</button>
+      <button type="button" class="tab-button" [class.active]="activeTab === 'prescriptions'" (click)="setTab('prescriptions')" role="tab" [attr.aria-selected]="activeTab === 'prescriptions'">Prescriptions</button>
+      <button type="button" class="tab-button" [class.active]="activeTab === 'allergies'" (click)="setTab('allergies')" role="tab" [attr.aria-selected]="activeTab === 'allergies'">Allergies</button>
+    </div>
+
+    <div class="tab-panel" *ngIf="activeTab === 'visits'" role="tabpanel">
+      <table *ngIf="visits$ | async as visits">
+        <thead>
+          <tr class="table-toolbar">
+            <th colspan="2">
+              <div class="toolbar-content">
+                <span class="toolbar-title">Visits</span>
+                <a *ngIf="isDoctor" [routerLink]="['/visits', 'new']" [queryParams]="{ patientId: patientId }" class="btn-primary">+ Add Visit</a>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let visit of visits">
+            <td>{{ visit.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+            <td>{{ visit.notes }}</td>
+          </tr>
+          <tr *ngIf="visits.length === 0">
+            <td colspan="2" class="empty">No visits found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-panel" *ngIf="activeTab === 'prescriptions'" role="tabpanel">
+      <table *ngIf="prescriptions$ | async as prescriptions">
+        <thead>
+          <tr class="table-toolbar">
+            <th [attr.colspan]="isDoctor ? 5 : 4">
+              <div class="toolbar-content">
+                <span class="toolbar-title">Prescriptions</span>
+                <a *ngIf="isDoctor" [routerLink]="['/prescriptions', 'new']" [queryParams]="{ patientId: patientId }" class="btn-primary">+ Add Prescription</a>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Medicine Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Created</th>
+            <th *ngIf="isDoctor">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rx of prescriptions">
+            <td>{{ rx.drugName }}</td>
+            <td>{{ rx.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ rx.endDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ rx.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+            <td *ngIf="isDoctor">
+              <a [routerLink]="['/prescriptions', rx.id, 'edit']" [queryParams]="{ patientId: patientId }" class="btn-link">Edit</a>
+              <button type="button" class="btn-delete" (click)="deletePrescription(rx)" [disabled]="!rx.id">
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="prescriptions.length === 0">
+            <td [attr.colspan]="isDoctor ? 5 : 4" class="empty">No prescriptions found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-panel" *ngIf="activeTab === 'allergies'" role="tabpanel">
+      <table *ngIf="allergies$ | async as allergies">
+        <thead>
+          <tr class="table-toolbar">
+            <th colspan="3">
+              <div class="toolbar-content">
+                <span class="toolbar-title">Allergies</span>
+                <a *ngIf="isDoctor" [routerLink]="['/allergies', 'new']" [queryParams]="{ patientId: patientId }" class="btn-primary">+ Add Allergy</a>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Allergen</th>
+            <th>Severity</th>
+            <th>Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let allergy of allergies">
+            <td>{{ allergy.allergen }}</td>
+            <td>
+              <span class="severity-badge" [ngClass]="{ 'severe': allergy.severity === 'Severe', 'mild': allergy.severity === 'Mild' }">
+                {{ allergy.severity }}
+              </span>
+            </td>
+            <td>{{ allergy.createdAt?.toDate() | date:'mediumDate' }}</td>
+          </tr>
+          <tr *ngIf="allergies.length === 0">
+            <td colspan="3" class="empty">No allergies found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="page">
   <div class="header">
     <h2>Prescriptions</h2>
-    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ New Prescription</a>
+    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ Add Prescription</a>
   </div>
 
   <app-patient-select
