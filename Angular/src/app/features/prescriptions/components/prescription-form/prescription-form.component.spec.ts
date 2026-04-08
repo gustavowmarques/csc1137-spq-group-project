@@ -147,6 +147,16 @@ describe('PrescriptionFormComponent', () => {
     expect(control?.errors).toBeNull();
   });
 
+  it('should allow past date in edit mode', () => {
+    component.isEditMode = true;
+    const control = component.form.get('startDate');
+
+    control?.setValue('2000-01-01');
+    control?.updateValueAndValidity();
+
+    expect(control?.errors).toBeNull();
+  });
+
   it('should return 1 if no dates', () => {
     const result = (component as any).calculateDurationDays({});
     expect(result).toBe(1);

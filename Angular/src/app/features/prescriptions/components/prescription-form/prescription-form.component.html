@@ -19,7 +19,7 @@
 
     <div class="field">
       <label>Start Date *</label>
-      <input type="date" formControlName="startDate" [min]="todayDate" />
+      <input type="date" formControlName="startDate" [attr.min]="isEditMode ? null : todayDate" />
       <span class="error" *ngIf="form.get('startDate')?.touched && form.get('startDate')?.hasError('required')">
         Start date is required.
       </span>
