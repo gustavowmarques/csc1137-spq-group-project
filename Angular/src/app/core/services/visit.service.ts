@@ -23,11 +23,27 @@ export class VisitService {
     );
   }
 
+  getById(id: string): Observable<Visit | undefined> {
+    return this.afs.doc<Visit>(`${this.collectionName}/${id}`).valueChanges().pipe(
+      map(data => (data ? { ...data, id } : undefined))
+    );
+  }
+
   async create(visit: Omit<Visit, 'id' | 'createdAt'>): Promise<string> {
     const docRef = await this.afs.collection(this.collectionName).add({
       ...visit,
       createdAt: new Date()
     });
     return docRef.id;
+  }
+
+  async update(id: string, visit: Partial<Omit<Visit, 'id' | 'createdAt'>>): Promise<void> {
+    await this.afs.doc(`${this.collectionName}/${id}`).update({
+      ...visit
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.afs.doc(`${this.collectionName}/${id}`).delete();
   }
 }

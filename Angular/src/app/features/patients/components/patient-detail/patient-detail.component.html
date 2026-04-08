@@ -58,7 +58,7 @@
       <table *ngIf="visits$ | async as visits">
         <thead>
           <tr class="table-toolbar">
-            <th colspan="2">
+            <th [attr.colspan]="isDoctor ? 3 : 2">
               <div class="toolbar-content">
                 <span class="toolbar-title">Visits</span>
                 <a *ngIf="isDoctor" [routerLink]="['/visits', 'new']" [queryParams]="{ patientId: patientId }" class="btn-primary">+ Add Visit</a>
@@ -68,15 +68,22 @@
           <tr>
             <th>Date</th>
             <th>Notes</th>
+            <th *ngIf="isDoctor">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let visit of visits">
-            <td>{{ visit.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+            <td>{{ visit.visitDate ? (visit.visitDate | date:'dd/MM/yyyy') : (visit.createdAt?.toDate() | date:'dd/MM/yyyy') }}</td>
             <td>{{ visit.notes }}</td>
+            <td *ngIf="isDoctor">
+              <a [routerLink]="['/visits', visit.id, 'edit']" [queryParams]="{ patientId: patientId }" class="btn-link">Edit</a>
+              <button type="button" class="btn-delete" (click)="deleteVisit(visit)" [disabled]="!visit.id">
+                Delete
+              </button>
+            </td>
           </tr>
           <tr *ngIf="visits.length === 0">
-            <td colspan="2" class="empty">No visits found.</td>
+            <td [attr.colspan]="isDoctor ? 3 : 2" class="empty">No visits found.</td>
           </tr>
         </tbody>
       </table>
@@ -125,7 +132,7 @@
       <table *ngIf="allergies$ | async as allergies">
         <thead>
           <tr class="table-toolbar">
-            <th colspan="3">
+            <th [attr.colspan]="isDoctor ? 4 : 3">
               <div class="toolbar-content">
                 <span class="toolbar-title">Allergies</span>
                 <a *ngIf="isDoctor" [routerLink]="['/allergies', 'new']" [queryParams]="{ patientId: patientId }" class="btn-primary">+ Add Allergy</a>
@@ -136,6 +143,7 @@
             <th>Allergen</th>
             <th>Severity</th>
             <th>Added</th>
+            <th *ngIf="isDoctor">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -147,9 +155,15 @@
               </span>
             </td>
             <td>{{ allergy.createdAt?.toDate() | date:'mediumDate' }}</td>
+            <td *ngIf="isDoctor">
+              <a [routerLink]="['/allergies', allergy.id, 'edit']" [queryParams]="{ patientId: patientId }" class="btn-link">Edit</a>
+              <button type="button" class="btn-delete" (click)="deleteAllergy(allergy)" [disabled]="!allergy.id">
+                Delete
+              </button>
+            </td>
           </tr>
           <tr *ngIf="allergies.length === 0">
-            <td colspan="3" class="empty">No allergies found.</td>
+            <td [attr.colspan]="isDoctor ? 4 : 3" class="empty">No allergies found.</td>
           </tr>
         </tbody>
       </table>

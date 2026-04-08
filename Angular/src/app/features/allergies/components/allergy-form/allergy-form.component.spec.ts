@@ -14,7 +14,9 @@ describe('AllergyFormComponent', () => {
 
   beforeEach(async () => {
     mockService = {
-      create: jasmine.createSpy().and.returnValue(Promise.resolve())
+      getById: jasmine.createSpy().and.returnValue(null),
+      create: jasmine.createSpy().and.returnValue(Promise.resolve()),
+      update: jasmine.createSpy().and.returnValue(Promise.resolve())
     };
 
     mockRouter = {
@@ -23,6 +25,9 @@ describe('AllergyFormComponent', () => {
 
     mockRoute = {
       snapshot: {
+        paramMap: {
+          get: jasmine.createSpy().and.returnValue(null)
+        },
         queryParamMap: {
           get: jasmine.createSpy().and.returnValue('p123')
         }

@@ -9,6 +9,10 @@
 .field {
   @include form.field-base;
 
+  input {
+    @include form.control-base;
+  }
+
   textarea {
     @include form.control-base;
     resize: vertical;

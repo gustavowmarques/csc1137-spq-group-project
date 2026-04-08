@@ -23,12 +23,24 @@ export class AllergyService {
     );
   }
 
+  getById(id: string): Observable<Allergy | undefined> {
+    return this.afs.doc<Allergy>(`${this.collectionName}/${id}`).valueChanges().pipe(
+      map(data => (data ? { ...data, id } : undefined))
+    );
+  }
+
   async create(allergy: Omit<Allergy, 'id' | 'createdAt'>): Promise<string> {
     const docRef = await this.afs.collection(this.collectionName).add({
       ...allergy,
       createdAt: new Date()
     });
     return docRef.id;
+  }
+
+  async update(id: string, allergy: Omit<Allergy, 'id' | 'createdAt'>): Promise<void> {
+    await this.afs.doc(`${this.collectionName}/${id}`).update({
+      ...allergy
+    });
   }
 
   async delete(id: string): Promise<void> {

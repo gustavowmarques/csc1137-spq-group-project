@@ -3,6 +3,7 @@ import { PrescriptionFormComponent } from './prescription-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PrescriptionService } from 'src/app/core/services/prescription.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -42,7 +43,8 @@ describe('PrescriptionFormComponent', () => {
             }
           }
         }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PrescriptionFormComponent);
