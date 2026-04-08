@@ -86,6 +86,9 @@ export class PrescriptionFormComponent implements OnInit {
     if (!value) {
       return null;
     }
+    if (this.isEditMode) {
+      return null;
+    }
     return value < this.todayDate ? { beforeToday: true } : null;
   };
 
