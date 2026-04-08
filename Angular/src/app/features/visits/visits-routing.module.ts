@@ -11,6 +11,12 @@ const routes: Routes = [
     component: VisitFormComponent,
     canActivate: [RoleGuard],
     data: { roles: ['Doctor'] }
+  },
+  {
+    path: ':id/edit',
+    component: VisitFormComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['Doctor'] }
   }
 ];
 

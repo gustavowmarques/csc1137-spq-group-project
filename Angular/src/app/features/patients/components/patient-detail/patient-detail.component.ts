@@ -68,4 +68,38 @@ export class PatientDetailComponent implements OnInit {
       console.error('Failed to delete prescription', err);
     }
   }
+
+  async deleteVisit(visit: Visit): Promise<void> {
+    if (!visit.id || !this.isDoctor) {
+      return;
+    }
+
+    const confirmed = window.confirm('Delete this visit?');
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await this.visitService.delete(visit.id);
+    } catch (err) {
+      console.error('Failed to delete visit', err);
+    }
+  }
+
+  async deleteAllergy(allergy: Allergy): Promise<void> {
+    if (!allergy.id || !this.isDoctor) {
+      return;
+    }
+
+    const confirmed = window.confirm(`Delete allergy \"${allergy.allergen}\"?`);
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await this.allergyService.delete(allergy.id);
+    } catch (err) {
+      console.error('Failed to delete allergy', err);
+    }
+  }
 }

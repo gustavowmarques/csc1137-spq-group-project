@@ -25,7 +25,8 @@ describe('AllergyListComponent', () => {
     };
 
     mockAuthService = {
-      hasAnyRole: jasmine.createSpy().and.returnValue(true)
+      hasAnyRole: jasmine.createSpy().and.returnValue(true),
+      hasRole: jasmine.createSpy().and.returnValue(true)
     };
 
     mockRoute = {
