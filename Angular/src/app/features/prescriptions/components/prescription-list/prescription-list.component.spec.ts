@@ -102,7 +102,7 @@ describe('PrescriptionListComponent', () => {
   });
 
   it('should not delete if user cancels', async () => {
-    spyOn(window, 'confirm').and.returnValue(false);
+    spyOn(globalThis, 'confirm').and.returnValue(false);
 
     await component.deletePrescription({ id: '1', drugName: 'Test' } as any);
 
@@ -110,7 +110,7 @@ describe('PrescriptionListComponent', () => {
   });
 
   it('should delete prescription', async () => {
-    spyOn(window, 'confirm').and.returnValue(true);
+    spyOn(globalThis, 'confirm').and.returnValue(true);
 
     await component.deletePrescription({ id: '1', drugName: 'Test' } as any);
 
@@ -119,7 +119,7 @@ describe('PrescriptionListComponent', () => {
   });
 
   it('should handle delete error', async () => {
-    spyOn(window, 'confirm').and.returnValue(true);
+    spyOn(globalThis, 'confirm').and.returnValue(true);
     mockPrescriptionService.delete.and.rejectWith('error');
 
     await component.deletePrescription({ id: '1', drugName: 'Test' } as any);

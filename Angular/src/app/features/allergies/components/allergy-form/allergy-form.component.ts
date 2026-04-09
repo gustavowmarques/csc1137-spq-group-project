@@ -53,7 +53,6 @@ export class AllergyFormComponent implements OnInit {
 
     if (!this.patientId) {
       this.router.navigate(['/patients']);
-      return;
     }
   }
 

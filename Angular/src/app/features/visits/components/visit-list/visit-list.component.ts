@@ -54,7 +54,7 @@ export class VisitListComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm('Delete this visit?');
+    const confirmed = globalThis.confirm('Delete this visit?');
     if (!confirmed) {
       return;
     }

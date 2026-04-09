@@ -54,7 +54,7 @@ export class PrescriptionListComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm(`Delete prescription for ${prescription.drugName}?`);
+    const confirmed = globalThis.confirm(`Delete prescription for ${prescription.drugName}?`);
     if (!confirmed) {
       return;
     }

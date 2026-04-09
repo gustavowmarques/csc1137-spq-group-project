@@ -52,7 +52,6 @@ describe('AllergyService', () => {
     service.getByPatientId('p1').subscribe((result) => {
       expect(result.length).toBeGreaterThan(0);
       expect(result[0].id).toBe('1');
-    //   expect(result[0].name).toBe('Peanut');
       done();
     });
 

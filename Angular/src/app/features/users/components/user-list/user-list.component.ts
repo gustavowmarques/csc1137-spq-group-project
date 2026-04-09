@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
     this.activationError = '';
 
     const email = this.activationEmail.trim().toLowerCase();
-    if (!email || !email.includes('@')) {
+    if (!email?.includes('@')) {
       this.activationError = 'Enter a valid email address.';
       return;
     }
@@ -53,6 +53,7 @@ export class UserListComponent implements OnInit {
       this.activationEmail = '';
       this.activationRole = 'Nurse';
     } catch (err) {
+      console.error('Failed to add email', err);
       this.activationError = 'Failed to add email. Please try again.';
     } finally {
       this.activating = false;
