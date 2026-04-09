@@ -18,6 +18,7 @@ export class VisitListComponent implements OnInit {
   selectedPatientId = '';
   isDoctor = false;
   hasPatientContext = false;
+  deleting: Record<string, boolean> = {};
 
   constructor(
     private visitService: VisitService,
@@ -45,6 +46,26 @@ export class VisitListComponent implements OnInit {
   private loadVisits(): void {
     if (this.selectedPatientId) {
       this.visits$ = this.visitService.getByPatientId(this.selectedPatientId);
+    }
+  }
+
+  async deleteVisit(visit: Visit): Promise<void> {
+    if (!visit.id || !this.isDoctor) {
+      return;
+    }
+
+    const confirmed = window.confirm('Delete this visit?');
+    if (!confirmed) {
+      return;
+    }
+
+    this.deleting[visit.id] = true;
+    try {
+      await this.visitService.delete(visit.id);
+    } catch (err) {
+      console.error('Failed to delete visit', err);
+    } finally {
+      this.deleting[visit.id] = false;
     }
   }
 }

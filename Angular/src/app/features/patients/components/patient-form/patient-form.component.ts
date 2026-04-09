@@ -15,6 +15,8 @@ export class PatientFormComponent implements OnInit {
   isEdit = false;
   patientId = '';
   saving = false;
+  genders = ['M', 'F', 'O'];
+  bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   constructor(
     private fb: FormBuilder,
@@ -26,9 +28,16 @@ export class PatientFormComponent implements OnInit {
   // load patient data on init if in editing mode
   ngOnInit(): void {
     this.form = this.fb.group({
+      ppsn: ['', [Validators.required, Validators.pattern(/^\d{7}[A-Za-z]{1,2}$/)]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      dateOfBirth: ['', [Validators.required, this.notFutureDate]]
+      dateOfBirth: ['', [Validators.required, this.notFutureDate]],
+      gender: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\+\d+$/)]],
+      address: ['', Validators.required],
+      bloodGroup: ['', Validators.required],
+      emergencyContactName: ['', Validators.required],
+      emergencyContactNumber: ['', [Validators.required, Validators.pattern(/^\+\d+$/)]]
     });
 
     this.patientId = this.route.snapshot.paramMap.get('id') ?? '';
@@ -55,6 +64,23 @@ export class PatientFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
+    const ppsnControl = this.form.get('ppsn');
+    const ppsn = String(ppsnControl?.value ?? '').trim().toUpperCase();
+    const isPpsnTaken = await this.patientService.isPpsnTaken(ppsn, this.isEdit ? this.patientId : undefined);
+    if (isPpsnTaken) {
+      ppsnControl?.setErrors({ ...(ppsnControl.errors ?? {}), duplicate: true });
+      ppsnControl?.markAsTouched();
+      return;
+    }
+
+    if (ppsnControl?.errors?.['duplicate']) {
+      const rest = { ...ppsnControl.errors };
+      delete rest['duplicate'];
+      ppsnControl.setErrors(Object.keys(rest).length ? rest : null);
+    }
+
+    this.form.patchValue({ ppsn });
 
     this.saving = true;
     try {

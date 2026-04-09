@@ -22,4 +22,16 @@ export class UserService {
   async updateRole(uid: string, role: UserRole): Promise<void> {
     await this.afs.doc(`users/${uid}`).update({ role });
   }
+
+  // approve an email for first-time login
+  async approveEmail(email: string, role: UserRole): Promise<void> {
+    const normalisedEmail = email.trim().toLowerCase();
+
+    await this.afs.doc(`approvedEmails/${normalisedEmail}`).set({
+      email: normalisedEmail,
+      role,
+      active: true,
+      activatedAt: new Date()
+    }, { merge: true });
+  }
 }

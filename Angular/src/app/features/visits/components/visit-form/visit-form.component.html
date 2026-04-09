@@ -1,7 +1,18 @@
 <div class="page">
-  <h2>Add Visit</h2>
+  <h2>{{ isEdit ? 'Edit Visit' : 'Add Visit' }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()" class="form-card">
+    <div class="field">
+      <label>Visit Date *</label>
+      <input type="date" formControlName="visitDate" [max]="today" />
+      <span class="error" *ngIf="form.get('visitDate')?.touched && form.get('visitDate')?.hasError('required')">
+        Visit date is required.
+      </span>
+      <span class="error" *ngIf="form.get('visitDate')?.touched && form.get('visitDate')?.hasError('futureDate')">
+        Future dates are not allowed.
+      </span>
+    </div>
+
     <div class="field">
       <label>Clinical Notes *</label>
       <textarea formControlName="notes" rows="6" placeholder="Enter clinical notes..."></textarea>
@@ -12,7 +23,7 @@
 
     <div class="actions">
       <button type="submit" class="btn-primary" [disabled]="saving">
-        {{ saving ? 'Saving...' : 'Save Visit' }}
+        {{ saving ? 'Saving...' : (isEdit ? 'Update Visit' : 'Save Visit') }}
       </button>
       <a [routerLink]="['/visits']" [queryParams]="{ patientId: patientId }" class="btn-cancel">Cancel</a>
     </div>

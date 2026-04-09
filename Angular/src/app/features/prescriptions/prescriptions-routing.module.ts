@@ -11,6 +11,12 @@ const routes: Routes = [
     component: PrescriptionFormComponent,
     canActivate: [RoleGuard],
     data: { roles: ['Doctor'] }
+  },
+  {
+    path: ':id/edit',
+    component: PrescriptionFormComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['Doctor'] }
   }
 ];
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Patient } from '../models/patient.model';
 
@@ -48,6 +48,19 @@ export class PatientService {
       ...patient,
       updatedAt: new Date()
     });
+  }
+
+  async isPpsnTaken(ppsn: string, excludeId?: string): Promise<boolean> {
+    const trimmed = ppsn.trim().toUpperCase();
+    if (!trimmed) {
+      return false;
+    }
+
+    const snapshot = await firstValueFrom(
+      this.afs.collection<Patient>(this.collectionName, ref => ref.where('ppsn', '==', trimmed)).get()
+    );
+
+    return snapshot.docs.some(doc => doc.id !== excludeId);
   }
 
   // filter patients by first or last name
