@@ -81,7 +81,7 @@ export class PrescriptionFormComponent implements OnInit {
     return Math.min(7, Math.max(1, diff));
   }
 
-  private notBeforeTodayValidator = (control: AbstractControl): ValidationErrors | null => {
+  private readonly notBeforeTodayValidator = (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string | null;
     if (!value) {
       return null;

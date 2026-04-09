@@ -69,7 +69,8 @@ export class PatientFormComponent implements OnInit {
     const ppsn = String(ppsnControl?.value ?? '').trim().toUpperCase();
     const isPpsnTaken = await this.patientService.isPpsnTaken(ppsn, this.isEdit ? this.patientId : undefined);
     if (isPpsnTaken) {
-      ppsnControl?.setErrors({ ...(ppsnControl.errors ?? {}), duplicate: true });
+      const currentErrors = ppsnControl?.errors;
+      ppsnControl?.setErrors(currentErrors ? { ...currentErrors, duplicate: true } : { duplicate: true });
       ppsnControl?.markAsTouched();
       return;
     }

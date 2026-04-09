@@ -2,11 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PrescriptionFormComponent } from './prescription-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PrescriptionService } from 'src/app/core/services/prescription.service';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
 
 describe('PrescriptionFormComponent', () => {
   let component: PrescriptionFormComponent;
@@ -98,6 +97,24 @@ describe('PrescriptionFormComponent', () => {
 
     expect(component.blockMessage).toContain('Cannot prescribe');
     expect(mockService.create).not.toHaveBeenCalled();
+  });
+
+  it('should block update in edit mode if allergy exists', async () => {
+    component.isEditMode = true;
+    component.prescriptionId = 'id1';
+    mockService.checkAllergyBlock.and.resolveTo('Penicillin');
+
+    component.form.setValue({
+      drugName: 'DrugX',
+      startDate: component.todayDate,
+      durationDays: 3,
+      dailyDosage: 'Once'
+    });
+
+    await component.save();
+
+    expect(component.blockMessage).toContain('Cannot prescribe');
+    expect(mockService.update).not.toHaveBeenCalled();
   });
 
   it('should block if conflicts exist', async () => {

@@ -29,12 +29,12 @@ export class PatientDetailComponent implements OnInit {
   activeTab: 'visits' | 'prescriptions' | 'allergies' = 'visits';
 
   constructor(
-    private route: ActivatedRoute,
-    private patientService: PatientService,
-    private authService: AuthService,
-    private visitService: VisitService,
-    private prescriptionService: PrescriptionService,
-    private allergyService: AllergyService
+    private readonly route: ActivatedRoute,
+    private readonly patientService: PatientService,
+    private readonly authService: AuthService,
+    private readonly visitService: VisitService,
+    private readonly prescriptionService: PrescriptionService,
+    private readonly allergyService: AllergyService
   ) {}
 
   // grab patient id from url and fetch thier data
@@ -57,7 +57,7 @@ export class PatientDetailComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm(`Delete prescription for ${prescription.drugName}?`);
+    const confirmed = globalThis.confirm(`Delete prescription for ${prescription.drugName}?`);
     if (!confirmed) {
       return;
     }
@@ -74,7 +74,7 @@ export class PatientDetailComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm('Delete this visit?');
+    const confirmed = globalThis.confirm('Delete this visit?');
     if (!confirmed) {
       return;
     }
@@ -91,7 +91,7 @@ export class PatientDetailComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm(`Delete allergy \"${allergy.allergen}\"?`);
+    const confirmed = globalThis.confirm(`Delete allergy "${allergy.allergen}"?`);
     if (!confirmed) {
       return;
     }

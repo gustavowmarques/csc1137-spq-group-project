@@ -56,7 +56,7 @@ export class AllergyListComponent implements OnInit {
       return;
     }
 
-    const confirmed = window.confirm(`Delete allergy \"${allergy.allergen}\"?`);
+    const confirmed = globalThis.confirm(`Delete allergy "${allergy.allergen}"?`);
     if (!confirmed) {
       return;
     }

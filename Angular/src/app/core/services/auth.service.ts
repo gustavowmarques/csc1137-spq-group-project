@@ -64,7 +64,7 @@ export class AuthService {
     );
 
     const firebaseUser = credential.user;
-    if (!firebaseUser || !firebaseUser.email) {
+    if (!firebaseUser?.email) {
       await this.afAuth.signOut();
       throw new Error('Unable to read your Google account email.');
     }
