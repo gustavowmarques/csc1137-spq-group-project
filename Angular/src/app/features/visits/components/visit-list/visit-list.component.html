@@ -17,15 +17,22 @@
       <tr>
         <th>Date</th>
         <th>Notes</th>
+        <th *ngIf="isDoctor">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let visit of visits">
-        <td>{{ visit.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+        <td>{{ visit.visitDate ? (visit.visitDate | date:'dd/MM/yyyy') : (visit.createdAt?.toDate() | date:'dd/MM/yyyy') }}</td>
         <td>{{ visit.notes }}</td>
+        <td *ngIf="isDoctor">
+          <a [routerLink]="[visit.id, 'edit']" [queryParams]="{ patientId: selectedPatientId }" class="btn-link">Edit</a>
+          <button type="button" class="btn-delete" (click)="deleteVisit(visit)" [disabled]="!visit.id || deleting[visit.id]">
+            {{ visit.id && deleting[visit.id] ? 'Deleting...' : 'Delete' }}
+          </button>
+        </td>
       </tr>
       <tr *ngIf="visits.length === 0">
-        <td colspan="2" class="empty">No visits found.</td>
+        <td [attr.colspan]="isDoctor ? 3 : 2" class="empty">No visits found.</td>
       </tr>
     </tbody>
   </table>

@@ -1,7 +1,7 @@
 <div class="page">
   <div class="header">
     <h2>Prescriptions</h2>
-    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ New Prescription</a>
+    <a *ngIf="isDoctor && selectedPatientId" [routerLink]="['new']" [queryParams]="{ patientId: selectedPatientId }" class="btn-primary">+ Add Prescription</a>
   </div>
 
   <app-patient-select
@@ -19,6 +19,7 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Created</th>
+        <th *ngIf="isDoctor">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -27,9 +28,15 @@
         <td>{{ rx.startDate | date:'dd/MM/yyyy' }}</td>
         <td>{{ rx.endDate | date:'dd/MM/yyyy' }}</td>
         <td>{{ rx.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+        <td *ngIf="isDoctor">
+          <a [routerLink]="[rx.id, 'edit']" [queryParams]="{ patientId: selectedPatientId }" class="btn-link">Edit</a>
+          <button type="button" class="btn-delete" (click)="deletePrescription(rx)" [disabled]="!rx.id || deleting[rx.id]">
+            {{ rx.id && deleting[rx.id] ? 'Deleting...' : 'Delete' }}
+          </button>
+        </td>
       </tr>
       <tr *ngIf="prescriptions.length === 0">
-        <td colspan="4" class="empty">No prescriptions found.</td>
+        <td [attr.colspan]="isDoctor ? 5 : 4" class="empty">No prescriptions found.</td>
       </tr>
     </tbody>
   </table>

@@ -2,7 +2,7 @@
 
 **Date & Location:** 21/01/2026 (In-class)
 
-**Attendees:** Gustavo, Alexis
+**Attendees:** Gustavo, Alexis  
 **Absent:** Rest of group
 
 ---

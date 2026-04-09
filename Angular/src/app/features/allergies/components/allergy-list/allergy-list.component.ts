@@ -17,7 +17,9 @@ export class AllergyListComponent implements OnInit {
   patients$!: Observable<Patient[]>;
   selectedPatientId = '';
   canAdd = false;
+  isDoctor = false;
   hasPatientContext = false;
+  deleting: Record<string, boolean> = {};
 
   constructor(
     private allergyService: AllergyService,
@@ -28,6 +30,7 @@ export class AllergyListComponent implements OnInit {
 
   ngOnInit(): void {
     this.canAdd = this.authService.hasAnyRole('Doctor', 'Nurse');
+    this.isDoctor = this.authService.hasRole('Doctor');
     this.patients$ = this.patientService.getAll();
 
     this.selectedPatientId = this.route.snapshot.queryParamMap.get('patientId') ?? '';
@@ -45,6 +48,26 @@ export class AllergyListComponent implements OnInit {
   private loadAllergies(): void {
     if (this.selectedPatientId) {
       this.allergies$ = this.allergyService.getByPatientId(this.selectedPatientId);
+    }
+  }
+
+  async deleteAllergy(allergy: Allergy): Promise<void> {
+    if (!allergy.id || !this.isDoctor) {
+      return;
+    }
+
+    const confirmed = window.confirm(`Delete allergy \"${allergy.allergen}\"?`);
+    if (!confirmed) {
+      return;
+    }
+
+    this.deleting[allergy.id] = true;
+    try {
+      await this.allergyService.delete(allergy.id);
+    } catch (err) {
+      console.error('Failed to delete allergy', err);
+    } finally {
+      this.deleting[allergy.id] = false;
     }
   }
 }

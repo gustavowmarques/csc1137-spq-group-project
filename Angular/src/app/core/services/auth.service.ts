@@ -63,39 +63,56 @@ export class AuthService {
       new firebase.auth.GoogleAuthProvider()
     );
 
-    if (credential.user) {
-      const user = credential.user;
+    const firebaseUser = credential.user;
+    if (!firebaseUser || !firebaseUser.email) {
+      await this.afAuth.signOut();
+      throw new Error('Unable to read your Google account email.');
+    }
+
+    const normalisedEmail = firebaseUser.email.trim().toLowerCase();
+    const approvalRef = this.afs.doc<{ active: boolean; role: UserRole }>(`approvedEmails/${normalisedEmail}`);
+    const approval = await firstValueFrom(approvalRef.valueChanges());
+    const approvedRole: UserRole = approval?.role ?? 'Nurse';
+
+    if (credential.additionalUserInfo?.isNewUser && !approval?.active) {
+      try {
+        await firebaseUser.delete();
+      } catch {
+        await this.afAuth.signOut();
+      }
+
+      throw new Error('Please contact an admin to authorise your account.');
+    }
+
+    if (firebaseUser) {
+      const user = firebaseUser;
       const uid = user.uid;
       const userRef = this.afs.doc<AppUser>(`users/${uid}`);
 
       const existing = await firstValueFrom(userRef.valueChanges());
+      const role = existing?.role ?? approvedRole;
+      const effectiveUser: AppUser = {
+        uid,
+        email: user.email ?? existing?.email ?? '',
+        displayName: user.displayName ?? existing?.displayName ?? '',
+        role,
+        createdAt: existing?.createdAt ?? new Date()
+      };
 
       // update exisiting user or create new with nurse role
       if (existing) {
         await userRef.update({
-          email: user.email ?? existing.email,
-          displayName: user.displayName ?? existing.displayName
+          email: effectiveUser.email,
+          displayName: effectiveUser.displayName
         }).catch(async () => {
-          await userRef.set({
-            uid,
-            email: user.email ?? '',
-            displayName: user.displayName ?? '',
-            role: existing.role ?? 'Nurse',
-            createdAt: existing.createdAt ?? new Date()
-          }, { merge: true });
+          await userRef.set(effectiveUser, { merge: true });
         });
       } else {
-        await userRef.set({
-          uid,
-          email: user.email ?? '',
-          displayName: user.displayName ?? '',
-          role: 'Nurse',
-          createdAt: new Date()
-        }, { merge: true });
+        await userRef.set(effectiveUser, { merge: true });
       }
+      this.currentUserSubject.next(effectiveUser);
 
       // role-based redirection post login
-      const role = existing?.role ?? 'Nurse';
       this.router.navigate([role === 'Admin' ? '/users' : '/patients']);
     }
   }

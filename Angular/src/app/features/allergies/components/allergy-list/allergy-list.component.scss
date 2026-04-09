@@ -41,6 +41,36 @@
   font-size: 0.9rem;
 }
 
+.btn-link {
+  color: #3ddc97;
+  text-decoration: none;
+  margin-right: 12px;
+  font-size: 0.9rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid #ef5350;
+  color: #ef5350;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+
+  &:hover {
+    background: #3e1a1a;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
 .severity-badge {
   padding: 4px 10px;
   border-radius: 12px;

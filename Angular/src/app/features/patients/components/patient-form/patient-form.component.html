@@ -1,7 +1,21 @@
 <div class="page">
   <h2>{{ isEdit ? 'Edit Patient' : 'New Patient' }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-card form-grid">
+    <div class="field">
+      <label>PPSN *</label>
+      <input type="text" formControlName="ppsn" maxlength="9" />
+      <span class="error" *ngIf="form.get('ppsn')?.touched && form.get('ppsn')?.hasError('required')">
+        PPSN is required.
+      </span>
+      <span class="error" *ngIf="form.get('ppsn')?.touched && form.get('ppsn')?.hasError('pattern')">
+        PPSN must be 7 digits followed by 1 or 2 letters.
+      </span>
+      <span class="error" *ngIf="form.get('ppsn')?.touched && form.get('ppsn')?.hasError('duplicate')">
+        PPSN already exists.
+      </span>
+    </div>
+
     <div class="field">
       <label>First Name *</label>
       <input type="text" formControlName="firstName" />
@@ -19,6 +33,17 @@
     </div>
 
     <div class="field">
+      <label>Gender *</label>
+      <select formControlName="gender">
+        <option value="">Select gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+      </select>
+      <span class="error" *ngIf="form.get('gender')?.touched && form.get('gender')?.hasError('required')">
+        Gender is required.
+      </span>
+    </div>
+
+    <div class="field">
       <label>Date of Birth *</label>
       <input type="date" formControlName="dateOfBirth" />
       <span class="error" *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.hasError('required')">
@@ -26,6 +51,55 @@
       </span>
       <span class="error" *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.hasError('futureDate')">
         Date of birth cannot be in the future.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Phone Number *</label>
+      <input type="tel" formControlName="phoneNumber" placeholder="+353871234567" />
+      <span class="error" *ngIf="form.get('phoneNumber')?.touched && form.get('phoneNumber')?.hasError('required')">
+        Phone number is required.
+      </span>
+      <span class="error" *ngIf="form.get('phoneNumber')?.touched && form.get('phoneNumber')?.hasError('pattern')">
+        Phone number must start with + and contain digits only.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Blood Group *</label>
+      <select formControlName="bloodGroup">
+        <option value="">Select blood group</option>
+        <option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup">{{ bloodGroup }}</option>
+      </select>
+      <span class="error" *ngIf="form.get('bloodGroup')?.touched && form.get('bloodGroup')?.hasError('required')">
+        Blood group is required.
+      </span>
+    </div>
+
+    <div class="field full">
+      <label>Address *</label>
+      <textarea rows="3" formControlName="address"></textarea>
+      <span class="error" *ngIf="form.get('address')?.touched && form.get('address')?.hasError('required')">
+        Address is required.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Emergency Contact Name *</label>
+      <input type="text" formControlName="emergencyContactName" />
+      <span class="error" *ngIf="form.get('emergencyContactName')?.touched && form.get('emergencyContactName')?.hasError('required')">
+        Emergency contact name is required.
+      </span>
+    </div>
+
+    <div class="field">
+      <label>Emergency Contact Number *</label>
+      <input type="tel" formControlName="emergencyContactNumber" placeholder="+353871234567" />
+      <span class="error" *ngIf="form.get('emergencyContactNumber')?.touched && form.get('emergencyContactNumber')?.hasError('required')">
+        Emergency contact number is required.
+      </span>
+      <span class="error" *ngIf="form.get('emergencyContactNumber')?.touched && form.get('emergencyContactNumber')?.hasError('pattern')">
+        Emergency contact number must start with + and contain digits only.
       </span>
     </div>
 

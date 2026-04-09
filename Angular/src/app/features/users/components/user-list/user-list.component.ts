@@ -12,6 +12,11 @@ import { UserService } from 'src/app/core/services/user.service';
 export class UserListComponent implements OnInit {
   users$!: Observable<AppUser[]>;
   updating: Record<string, boolean> = {};
+  activationEmail = '';
+  activationRole: UserRole = 'Nurse';
+  activating = false;
+  activationMessage = '';
+  activationError = '';
 
   constructor(private userService: UserService) {}
 
@@ -28,6 +33,29 @@ export class UserListComponent implements OnInit {
       console.error('Failed to update role', err);
     } finally {
       this.updating[uid] = false;
+    }
+  }
+
+  async activateEmail(): Promise<void> {
+    this.activationMessage = '';
+    this.activationError = '';
+
+    const email = this.activationEmail.trim().toLowerCase();
+    if (!email || !email.includes('@')) {
+      this.activationError = 'Enter a valid email address.';
+      return;
+    }
+
+    this.activating = true;
+    try {
+      await this.userService.approveEmail(email, this.activationRole);
+      this.activationMessage = `Added ${email} as ${this.activationRole}.`;
+      this.activationEmail = '';
+      this.activationRole = 'Nurse';
+    } catch (err) {
+      this.activationError = 'Failed to add email. Please try again.';
+    } finally {
+      this.activating = false;
     }
   }
 }

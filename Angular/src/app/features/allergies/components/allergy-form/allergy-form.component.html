@@ -1,5 +1,5 @@
 <div class="page">
-  <h2>Add Allergy</h2>
+  <h2>{{ isEdit ? 'Edit Allergy' : 'Add Allergy' }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
     <div class="field">
@@ -19,7 +19,7 @@
 
     <div class="actions">
       <button type="submit" class="btn-primary" [disabled]="saving">
-        {{ saving ? 'Saving...' : 'Add Allergy' }}
+        {{ saving ? 'Saving...' : (isEdit ? 'Update Allergy' : 'Add Allergy') }}
       </button>
       <a [routerLink]="['/allergies']" [queryParams]="{ patientId: patientId }" class="btn-cancel">Cancel</a>
     </div>
