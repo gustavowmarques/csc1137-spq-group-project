@@ -99,6 +99,7 @@ describe('PrescriptionFormComponent', () => {
     expect(mockService.create).not.toHaveBeenCalled();
   });
 
+<<<<<<< HEAD
   it('should block update in edit mode if allergy exists', async () => {
     component.isEditMode = true;
     component.prescriptionId = 'id1';
@@ -117,6 +118,8 @@ describe('PrescriptionFormComponent', () => {
     expect(mockService.update).not.toHaveBeenCalled();
   });
 
+=======
+>>>>>>> main
   it('should block if conflicts exist', async () => {
     mockService.checkDrugConflicts.and.resolveTo(['DrugY']);
 
