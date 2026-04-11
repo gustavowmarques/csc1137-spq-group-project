@@ -60,37 +60,12 @@ The Google OAuth can have various cases.
 - EP-AUTH-5: network timeout during the redirect, so user is not logged in.
 - EP-AUTH-6: user is already logged in and navigates to login page, so is redirected to dashboard.
 
-### 2.6 Appointment Date
+### 2.6 Visit Date
 
 - EP-APMT-DATE-1: date in valid format is accepted.
 - EP-APMT-DATE-2: invalid date format shows error.
 - EP-APMT-DATE-3: impossible date (e.g. 30 February) shows error.
 - EP-APMT-DATE-4: date field left empty is required field error.
-
-Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
-
-### 2.7 Appointment Time
-
-- EP-APMT-TIME-1: valid time format and within working hours is accepted.
-- EP-APMT-TIME-2: invalid time format shows error.
-- EP-APMT-TIME-3: time field left empty is required field error.
-
-Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
-
-### 2.8 Appointment Duration
-
-- EP-APMT-DUR-1: duration within the allowed range is accepted.
-- EP-APMT-DUR-2: duration of zero or negative shows error.
-- EP-APMT-DUR-3: duration field left empty is required field error.
-
-Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
-
-### 2.9 Appointment Overlap
-
-Two appointments should not conflict with each other.
-
-- EP-APMT-O-1: no overlap with any existing appointment is accepted.
-- EP-APMT-O-2: new appointment overlapping with old one gives error.
 
 Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
 
@@ -109,27 +84,6 @@ We filter for active prescriptions to check for conflicts with new prescriptions
 - BVA-DOB-1: yesterday's date is accepted.
 - BVA-DOB-2: today's date is accepted.
 - BVA-DOB-3: tomorrow's date is invalid.
-
-### 3.3 Appointment Time
-
-Appointments can only be scheduled within working hours.
-
-- BVA-TIME-1: one minute before opening hour is rejected.
-- BVA-TIME-2: one minute after closing hour is rejected.
-- BVA-TIME-3: exactly at opening hour is accepted.
-- BVA-TIME-4: exactly at closing hour is accepted.
-
-Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
-
-### 3.4 Scheduling Time Boundary
-
-Appointment time must be in the future because the boundary is the current time.
-
-- BVA-SCHED-1: appointment time one minute before now is rejected.
-- BVA-SCHED-2: appointment time equal to now is rejected.
-- BVA-SCHED-3: appointment time one minute after now is accepted.
-
-Note: These have not been manually tested yet as the functionality has not been implemented in this phase.
 
 ## 4. Decision Tables
 
@@ -184,3 +138,23 @@ When user is not logged in:
 
 When user is already logged in:
 - DT-RBAC-15: login page is blocked, redirected to respective landing page.
+
+## Declaration of Authorship and AI Non-Usage
+
+### By submitting this project, the team declares that:
+
+1. All work submitted is the original work of the team members.
+2. No AI, LLM, or generative tools were used to generate project documentation,
+   reports, source code, or assessment submissions.
+3. All work complies with Dublin City University’s academic integrity policy
+   and the requirements of the CSC1137 module.
+
+### Signatories
+- Gustavo
+- Shaheer Imran
+- Saumitra Bhosle
+- Quentin L.
+- Amaan
+- Alexis Roi Pechon
+
+---

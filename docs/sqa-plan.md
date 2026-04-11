@@ -158,7 +158,7 @@ Software Quality Assurance is critical for MediTrack because the application dea
 
 The combination of unit testing, integration testing, system testing and regression testing ensures the application is validated at every level. The tools we have chosen are Jasmine, Karma, ESLint, GitLab CI and Istanbul. Through continuous testing and code coverage monitoring, we aim to deliver a system with reliable prescription and medicine interaction logic, consistent patient data, and properly enforced access control.
 
-## 8. References
+## 9. References
 
 - [1] TestCollab, “Software Testing Strategies: The Complete Guide for QA Teams,” 2026. [Online]. Available: https://testcollab.com/blog/software-testing-strategies. Accessed: Feb. 22, 2026. 
 - [2] Angular, “Testing with Karma and Jasmine.” [Online]. Available: https://angular.dev/guide/testing/karma. Accessed: Feb. 22, 2026. 
@@ -168,3 +168,23 @@ The combination of unit testing, integration testing, system testing and regress
 - [6] E. Carocci, “Mocking Third-Party Services in Integration Testing,” Medium (Geek Culture). [Online]. Available: https://medium.com/geekculture/mocking-third-party-services-in-integration-testing-7ded9ac1fe83. Accessed: Feb. 22, 2026. 
 - [7] Angular, “Testing services.” [Online]. Available: https://angular.dev/guide/testing/services#angular-testbed. Accessed: Feb. 22, 2026. 
 - [8] Jasmine, “Jasmine Documentation.” [Online]. Available: https://jasmine.github.io/index.html. Accessed: Feb. 22, 2026.
+
+##  10. Declaration of Authorship and AI Non-Usage
+
+### By submitting this project, the team declares that:
+
+1. All work submitted is the original work of the team members.
+2. No AI, LLM, or generative tools were used to generate project documentation,
+   reports, source code, or assessment submissions.
+3. All work complies with Dublin City University’s academic integrity policy
+   and the requirements of the CSC1137 module.
+
+### Signatories
+- Gustavo
+- Shaheer Imran
+- Saumitra Bhosle
+- Quentin L.
+- Amaan
+- Alexis Roi Pechon
+
+---

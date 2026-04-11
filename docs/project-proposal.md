@@ -37,16 +37,21 @@ The team will work in short iterative cycles with the following practices:
 
 ---
 
-## Expected Outcomes of Phase 1
+## Declaration of Authorship and AI Non-Usage
+### By submitting this project, the team declares that:
 
-- Defined project scope and domain
-- Initial Agile backlog and workflow
-- Agreed DoR and DoD
-- Working CI pipeline and project board
-- Documented evidence of planning and team collaboration
+1. All work submitted is the original work of the team members.
+2. No AI, LLM, or generative tools were used to generate project documentation,
+   reports, source code, or assessment submissions.
+3. All work complies with Dublin City University’s academic integrity policy
+   and the requirements of the CSC1137 module.
+
+### Signatories
+- Gustavo
+- Shaheer Imran
+- Saumitra Bhosle
+- Quentin L.
+- Amaan
+- Alexis Roi Pechon
 
 ---
-
-## Declaration of Authorship and AI Non-Usage
-
-This section will be completed and signed by all team members prior to final submission, in accordance with the module’s academic integrity requirements.
