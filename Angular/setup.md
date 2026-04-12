@@ -11,7 +11,7 @@ This guide explains how to get the project running locally after cloning the rep
 cd .\Angular\
 
 Install dependencies:
-npm install
+npm ci
 
 Start the development server:
 npm start
